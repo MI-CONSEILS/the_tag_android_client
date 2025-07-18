@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">TheTag</string>
+
+
+    // TODO this text for home
+    <string name="header_home">Comment souhaitez-vous commander ?</string>
+
+    <string name="take_away_home_title">À emporter</string>
+    <string name="take_away_home_description">Je prends ma commande avec moi</string>
+
+    <string name="in_place_home_title">Sur place</string>
+    <string name="in_place_home_description">Je reste ici pour manger</string>
+
 </resources>
