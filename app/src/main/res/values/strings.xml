@@ -2,7 +2,7 @@
     <string name="app_name">TheTag</string>
 
 
-    // TODO this text for home
+    // TODO this text for on boardin
     <string name="header_home">Comment souhaitez-vous commander ?</string>
 
     <string name="take_away_home_title">À emporter</string>
@@ -10,5 +10,17 @@
 
     <string name="in_place_home_title">Sur place</string>
     <string name="in_place_home_description">Je reste ici pour manger</string>
+
+    // TODO this text for home
+    <string name="search">Search</string>
+
+    <string-array name="menus">
+        <item>Menus</item>
+        <item>Burgers</item>
+        <item>Wraps</item>
+        <item>Desserts</item>
+        <item>Accompagnements</item>
+        <item>Boissons</item>
+    </string-array>
 
 </resources>
