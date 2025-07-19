@@ -1,4 +1,4 @@
-package com.mokhtarihadjmohamed.thetag.View
+package com.mokhtarihadjmohamed.thetag.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -103,7 +103,6 @@ fun OnBoarding(navController: NavController){
                     Column {
                         Text(
                             text = stringResource(id = R.string.take_away_home_title),
-                            modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding()),
                             style = TextStyle(
                                 fontFamily = FontFamily(Font(R.font.inter_medium)),
                                 fontSize = 24.sp,
@@ -112,7 +111,6 @@ fun OnBoarding(navController: NavController){
                         )
                         Text(
                             text = stringResource(id = R.string.take_away_home_description),
-                            modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding()),
                             style = TextStyle(
                                 fontFamily = FontFamily(Font(R.font.inter_medium)),
                                 fontSize = 16.sp,
@@ -178,13 +176,4 @@ fun OnBoarding(navController: NavController){
             Spacer(modifier = Modifier.weight(1f))
         }
     }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun ComposablePreviewOnBoarding(){
-    val navController = rememberNavController()
-
-    OnBoarding(navController)
 }

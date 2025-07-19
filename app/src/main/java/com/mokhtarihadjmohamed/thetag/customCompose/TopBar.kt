@@ -1,4 +1,4 @@
-package com.mokhtarihadjmohamed.thetag.CustomCompose
+package com.mokhtarihadjmohamed.thetag.customCompose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -12,7 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -21,10 +20,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
 import com.mokhtarihadjmohamed.thetag.R
-import com.mokhtarihadjmohamed.thetag.View.HomeScreen
 import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
+
+/*
+* This Composable is Top bar and it have logo name category and notification icon like cart
+* and chat, it tack is input just the title.
+* */
 
 @Composable
 fun TopBar(
@@ -66,17 +68,4 @@ fun TopBar(
         )
 
     }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun ComposablePreviewTop() {
-    TopBar(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(4.dp)
-            .background(color = background_color),
-        title = "Burger King"
-    )
 }

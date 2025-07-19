@@ -1,4 +1,4 @@
-package com.mokhtarihadjmohamed.thetag.CustomCompose
+package com.mokhtarihadjmohamed.thetag.customCompose
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -30,12 +30,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
 import com.mokhtarihadjmohamed.thetag.R
-import com.mokhtarihadjmohamed.thetag.View.HomeScreen
-import com.mokhtarihadjmohamed.thetag.ui.theme.border_color
 import com.mokhtarihadjmohamed.thetag.ui.theme.icon_color
 
+/*
+* This Composable is Custom text field is user in multiple on like search normal textfield
+* is tack as input icon and icon end evey icon can be change from input
+* */
 
 @Composable
 fun CustomTextField(
@@ -100,22 +101,4 @@ fun CustomTextField(
                 )
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ComposablePreviewCustomEditText(){
-    var text by remember { mutableStateOf("") }
-
-    CustomTextField(
-        modifier = Modifier.border(1.dp, Color.Gray, RoundedCornerShape(8.dp))
-            .padding(12.dp).fillMaxWidth(),
-        value = text,
-        onValueChange = {
-            text = it
-        },
-        placeholder = stringResource(R.string.search) ,
-        icon = R.drawable.search,
-        endIcon = R.drawable.fillter
-    )
 }

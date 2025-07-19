@@ -1,4 +1,4 @@
-package com.mokhtarihadjmohamed.thetag.CustomCompose
+package com.mokhtarihadjmohamed.thetag.customCompose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -31,6 +30,11 @@ import com.mokhtarihadjmohamed.thetag.R
 import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
 import com.mokhtarihadjmohamed.thetag.ui.theme.icon_color
 
+
+/*
+* This Composable is Notification icon with badge this is tack
+* enter icon and show badge if thar are notification
+* */
 @Composable
 fun NotificationIconWithBadge(
     onClick: () -> Unit,
@@ -85,17 +89,4 @@ fun NotificationIconWithBadge(
             }
         }
     }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun ComposablePreviewNot() {
-
-    NotificationIconWithBadge(
-        icon = painterResource(R.drawable.shooping_cart),
-        hasNotification = true,
-        onClick = {},
-        number = 4
-    )
 }
