@@ -59,4 +59,5 @@ dependencies {
 
     // TODO NEW LIB
     implementation(libs.androidx.navigation.compose)
+    testImplementation(kotlin("test"))
 }
