@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
@@ -46,6 +47,7 @@ import com.mokhtarihadjmohamed.thetag.customCompose.CustomGridItem
 import com.mokhtarihadjmohamed.thetag.customCompose.CustomRowItem
 import com.mokhtarihadjmohamed.thetag.customCompose.CustomTextField
 import com.mokhtarihadjmohamed.thetag.customCompose.TopBar
+import com.mokhtarihadjmohamed.thetag.model.Notification
 import com.mokhtarihadjmohamed.thetag.model.Order
 import com.mokhtarihadjmohamed.thetag.model.Product
 import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
@@ -62,6 +64,8 @@ import com.mokhtarihadjmohamed.thetag.ui.theme.border_color
 fun OrderScreen(navController: NavController) {
 
     var text by remember { mutableStateOf("") }
+    val context = LocalContext.current
+    val notification = Notification("Order", "You are Order is new!")
 
     val menusList: List<String> =
         stringArrayResource(R.array.menus).toCollection(destination = ArrayList())
@@ -174,7 +178,9 @@ fun OrderScreen(navController: NavController) {
             ) {
                 items(orders) { order ->
                     CustomRowItem(
-                        onClick = {},
+                        onClick = {
+                            notification.showNotification(context)
+                        },
                         order = order
                     )
                 }

@@ -143,7 +143,7 @@ fun CustomRowItem(
                             ),
                             label = "Commander",
                             textColor = Color.White,
-                            onClick = {}
+                            onClick = onClick
                         )
                     }
 

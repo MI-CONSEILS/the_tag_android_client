@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "106731112484",
+    "project_id": "tagproject-bcf44",
+    "storage_bucket": "tagproject-bcf44.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106731112484:android:3d27cd32b43ad280fa30b1",
+        "android_client_info": {
+          "package_name": "com.mokhtarihadjmohamed.thetag"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNt46AEarPvqy1qvF9SIb-RmpGU75JTcc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
