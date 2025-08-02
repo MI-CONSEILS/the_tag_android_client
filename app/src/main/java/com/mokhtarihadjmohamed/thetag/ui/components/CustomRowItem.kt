@@ -1,4 +1,4 @@
-package com.mokhtarihadjmohamed.thetag.customCompose
+package com.mokhtarihadjmohamed.thetag.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,8 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -21,17 +19,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mokhtarihadjmohamed.thetag.R
-import com.mokhtarihadjmohamed.thetag.model.Order
-import com.mokhtarihadjmohamed.thetag.model.Product
+import com.mokhtarihadjmohamed.thetag.models.Order
 import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
 import com.mokhtarihadjmohamed.thetag.ui.theme.border_color
 

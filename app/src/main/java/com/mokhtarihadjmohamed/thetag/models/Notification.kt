@@ -1,4 +1,4 @@
-package com.mokhtarihadjmohamed.thetag.model
+package com.mokhtarihadjmohamed.thetag.models
 
 import android.app.Activity
 import android.app.NotificationChannel
@@ -9,10 +9,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.util.Log
-import android.widget.Toast
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat

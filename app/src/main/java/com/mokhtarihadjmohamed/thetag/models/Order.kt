@@ -1,4 +1,4 @@
-package com.mokhtarihadjmohamed.thetag.model
+package com.mokhtarihadjmohamed.thetag.models
 
 /*
 * This is order class and have getTotal function that is test in order test and is return total of

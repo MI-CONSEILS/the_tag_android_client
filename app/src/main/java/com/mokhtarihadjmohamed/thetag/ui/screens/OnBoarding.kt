@@ -1,4 +1,4 @@
-package com.mokhtarihadjmohamed.thetag.view
+package com.mokhtarihadjmohamed.thetag.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -25,11 +25,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.mokhtarihadjmohamed.thetag.R
 import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
 import com.mokhtarihadjmohamed.thetag.ui.theme.border_color

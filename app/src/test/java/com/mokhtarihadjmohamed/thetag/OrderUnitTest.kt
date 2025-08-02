@@ -1,7 +1,7 @@
 package com.mokhtarihadjmohamed.thetag
 
-import com.mokhtarihadjmohamed.thetag.model.Order
-import com.mokhtarihadjmohamed.thetag.model.Product
+import com.mokhtarihadjmohamed.thetag.models.Order
+import com.mokhtarihadjmohamed.thetag.models.Product
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import kotlin.test.assertNotEquals

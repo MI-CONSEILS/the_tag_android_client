@@ -1,4 +1,4 @@
-package com.mokhtarihadjmohamed.thetag.model
+package com.mokhtarihadjmohamed.thetag.models
 
 /*
 * This is Product class
