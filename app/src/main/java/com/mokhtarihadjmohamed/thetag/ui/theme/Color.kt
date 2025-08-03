@@ -16,3 +16,5 @@ val background_color = Color(0xFFFFFFFF)
 val border_color = Color(0xFFE5E5E5)
 val icon_color = Color(0xff474748)
 val icon_color_50 = Color(0x80474748)
+
+val black_900 = Color(0xff191919)

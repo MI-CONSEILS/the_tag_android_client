@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -125,20 +126,15 @@ fun CustomRowItem(
                         )
 
                         CustomButton(
-                            modifier = Modifier
-                                .background(
-                                    color = Color.Black,
-                                    shape = RoundedCornerShape(4.dp)
-                                )
-                                .padding(
+                            label = "Commander",
+                            textColor = Color.White,
+                            onClick = onClick,
+                            padding = PaddingValues(
                                 start = 16.dp,
                                 end = 16.dp,
                                 bottom = 8.dp,
                                 top = 8.dp
-                            ),
-                            label = "Commander",
-                            textColor = Color.White,
-                            onClick = onClick
+                            )
                         )
                     }
 

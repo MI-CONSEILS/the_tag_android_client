@@ -1,0 +1,59 @@
+package com.mokhtarihadjmohamed.thetag.ui.components
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import com.mokhtarihadjmohamed.thetag.R
+import com.mokhtarihadjmohamed.thetag.ui.theme.black_900
+import com.mokhtarihadjmohamed.thetag.ui.theme.icon_color
+
+/*
+* this is a custom button, it just simple icon and onclick and can change the icon
+* by injection.
+* */
+
+@Composable
+fun CustomIconButton(
+    modifier: Modifier = Modifier,
+    icon: Int = R.drawable.menu,
+    iconSize: Int = 16,
+    iconColor: Color = black_900,
+    borderWidth: Int = 2,
+    borderColor: Color = icon_color,
+    roundedCorner: Int = 24,
+    onClick: () -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .border(
+                width = borderWidth.dp,
+                color = borderColor,
+                shape = RoundedCornerShape(roundedCorner.dp)
+            )
+            .background(
+                color = Color.Transparent,
+                shape = RoundedCornerShape(roundedCorner.dp)
+            )
+            .padding(
+                8.dp
+            )
+            .clickable(onClick = onClick),
+    ) {
+        Icon(
+            modifier = Modifier.size(iconSize.dp),
+            painter = painterResource(icon),
+            contentDescription = "icon",
+            tint = iconColor
+        )
+    }
+}

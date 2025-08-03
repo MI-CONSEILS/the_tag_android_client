@@ -59,14 +59,18 @@ fun OrderScreen(navController: NavController) {
                     description = "Grillé à la flamme pour un goût inimitable",
                     price = 18.0,
                     imageURl = "",
-                    amount = 1
+                    amount = 1,
+                    type = "Burgers"
+
                 ),
                 Product(
                     name = "Burger  - SM Lucena",
                     description = "Grillé à la flamme pour un goût inimitable",
                     price = 18.0,
                     imageURl = "",
-                    amount = 2
+                    amount = 2,
+                    type = "Burgers"
+
                 )
             ),
             date = "8 Avril 2025"
@@ -79,14 +83,16 @@ fun OrderScreen(navController: NavController) {
                     description = "Grillé à la flamme pour un goût inimitable",
                     price = 18.0,
                     imageURl = "",
-                    amount = 1
+                    amount = 1,
+                    type = "Burgers"
                 ),
                 Product(
                     name = "Burger  - SM Lucena",
                     description = "Grillé à la flamme pour un goût inimitable",
                     price = 18.0,
                     imageURl = "",
-                    amount = 3
+                    amount = 3,
+                    type = "Burgers"
                 )
             ),
             date = "8 Octobre 2024"
@@ -99,14 +105,14 @@ fun OrderScreen(navController: NavController) {
                     description = "Grillé à la flamme pour un goût inimitable",
                     price = 18.0,
                     imageURl = "",
-                    amount = 1
+                    type = "Burgers"
                 ),
                 Product(
                     name = "Burger  - SM Lucena",
                     description = "Grillé à la flamme pour un goût inimitable",
                     price = 18.0,
                     imageURl = "",
-                    amount = 2
+                    type = "Burgers"
                 )
             ),
             date = "8 Septembre 2024"

@@ -53,6 +53,7 @@ import com.mokhtarihadjmohamed.thetag.ui.components.CustomGridItem
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomTextField
 import com.mokhtarihadjmohamed.thetag.ui.components.TopBar
 import com.mokhtarihadjmohamed.thetag.models.Product
+import com.mokhtarihadjmohamed.thetag.ui.components.MenuItem
 import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
 import com.mokhtarihadjmohamed.thetag.ui.theme.border_color
 
@@ -107,57 +108,95 @@ fun HomeScreen(
             name = "Burger  - SM Lucena",
             description = "Grillé à la flamme pour un goût inimitable",
             price = 18.0,
-            imageURl = ""
+            imageURl = "",
+            type = "Burgers"
         ),
         Product(
             name = "Burger  - SM Lucena",
             description = "Grillé à la flamme pour un goût inimitable",
             price = 18.0,
-            imageURl = ""
+            imageURl = "",
+            type = "Burgers"
         ),
         Product(
             name = "Burger  - SM Lucena",
             description = "Grillé à la flamme pour un goût inimitable",
             price = 18.0,
-            imageURl = ""
+            imageURl = "",
+            type = "Burgers"
         ),
         Product(
             name = "Burger  - SM Lucena",
             description = "Grillé à la flamme pour un goût inimitable",
             price = 18.0,
-            imageURl = ""
+            imageURl = "",
+            type = "Burgers"
         ),
         Product(
             name = "Burger  - SM Lucena",
             description = "Grillé à la flamme pour un goût inimitable",
             price = 18.0,
-            imageURl = ""
+            imageURl = "",
+            type = "Burgers"
         ),
         Product(
             name = "Burger  - SM Lucena",
             description = "Grillé à la flamme pour un goût inimitable",
             price = 18.0,
-            imageURl = ""
+            imageURl = "",
+            type = "Burgers"
         ),
         Product(
             name = "Burger  - SM Lucena",
             description = "Grillé à la flamme pour un goût inimitable",
             price = 18.0,
-            imageURl = ""
+            imageURl = "",
+            type = "Burgers"
         ),
         Product(
             name = "Burger  - SM Lucena",
             description = "Grillé à la flamme pour un goût inimitable",
             price = 18.0,
-            imageURl = ""
+            imageURl = "",
+            type = "Burgers"
         ),
         Product(
             name = "Burger  - SM Lucena",
             description = "Grillé à la flamme pour un goût inimitable",
             price = 18.0,
-            imageURl = ""
+            imageURl = "",
+            type = "Burgers"
         ),
-    )
+        Product(
+            name = "Burger  - SM Lucena",
+            description = "Grillé à la flamme pour un goût inimitable",
+            price = 18.0,
+            imageURl = "",
+            type = "Burgers"
+        ),
+        Product(
+            name = "Burger  - SM Lucena",
+            description = "Grillé à la flamme pour un goût inimitable",
+            price = 18.0,
+            imageURl = "",
+            type = "Burgers"
+        ),
+        Product(
+            name = "Burger  - SM Lucena",
+            description = "Grillé à la flamme pour un goût inimitable",
+            price = 18.0,
+            imageURl = "",
+            type = "Burgers"
+        ),
+        Product(
+            name = "Burger  - SM Lucena",
+            description = "Grillé à la flamme pour un goût inimitable",
+            price = 18.0,
+            imageURl = "",
+            type = "Burgers"
+        ),
+
+        )
 
     Scaffold(
         topBar = {
@@ -208,7 +247,9 @@ fun HomeScreen(
                 ) {
                     items(products) { product ->
                         CustomGridItem(
-                            onClick = {},
+                            onClick = {
+                                navController.navigate("ProductScreen")
+                            },
                             product = product
                         )
                     }
@@ -263,20 +304,7 @@ fun HomeScreen(
                     horizontalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     items(menusList) { item ->
-                        Text(
-                            item,
-                            modifier = Modifier
-                                .border(
-                                    width = 1.dp,
-                                    color = border_color,
-                                    shape = RoundedCornerShape(4.dp)
-                                )
-                                .padding(start = 8.dp, end = 8.dp, bottom = 4.dp, top = 4.dp),
-                            style = TextStyle(
-                                fontFamily = FontFamily(Font(R.font.inter_medium)),
-                                fontSize = 16.sp,
-                            )
-                        )
+                        MenuItem(type = item)
                     }
                 }
             }

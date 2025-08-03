@@ -15,6 +15,7 @@ import com.mokhtarihadjmohamed.thetag.ui.screens.HomeScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.OnBoarding
 import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
 import com.mokhtarihadjmohamed.thetag.ui.screens.OrderScreen
+import com.mokhtarihadjmohamed.thetag.ui.screens.ProductScreen
 
 /*
 * This is main activity, I'm always use one activity
@@ -50,6 +51,7 @@ fun NavigationComposable() {
             composable("OnBoarding") { OnBoarding(navController) }
             composable("HomeScreen") { HomeScreen(navController) }
             composable("OrderScreen") { OrderScreen(navController) }
+            composable("ProductScreen") { ProductScreen(navController) }
         }
     }
 }
