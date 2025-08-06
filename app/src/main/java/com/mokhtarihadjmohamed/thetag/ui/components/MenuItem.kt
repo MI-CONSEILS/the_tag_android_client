@@ -21,7 +21,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
 import com.mokhtarihadjmohamed.thetag.R
 import com.mokhtarihadjmohamed.thetag.ui.screens.ProductScreen
-import com.mokhtarihadjmohamed.thetag.ui.theme.border_color
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_dark
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light
 
 /*
 * This is the item is used in menu and also in some other face
@@ -32,7 +33,7 @@ fun MenuItem(
     modifier: Modifier = Modifier
         .border(
             width = 1.dp,
-            color = border_color,
+            color = grey_light,
             shape = RoundedCornerShape(4.dp)
         ),
     type: String,

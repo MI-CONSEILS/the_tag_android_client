@@ -29,8 +29,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.mokhtarihadjmohamed.thetag.R
-import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
-import com.mokhtarihadjmohamed.thetag.ui.theme.border_color
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_normal
+import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 /*
 * This is onboarding screen you will find:
@@ -47,7 +47,7 @@ fun OnBoarding(navController: NavController){
         modifier = Modifier
             .padding(start = 16.dp, end = 16.dp)
             .fillMaxSize(),
-        containerColor = background_color
+        containerColor = white_normal
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -73,7 +73,7 @@ fun OnBoarding(navController: NavController){
                     .fillMaxWidth()
                     .border(
                         width = 2.dp,
-                        color = border_color,
+                        color = grey_normal,
                         shape = RoundedCornerShape(12.dp)
                     ).clickable(
                         onClick = {
@@ -83,7 +83,7 @@ fun OnBoarding(navController: NavController){
                         }
                     ),
                 colors = CardDefaults.cardColors(
-                    containerColor = background_color,
+                    containerColor = white_normal,
                 )
             ) {
                 Row(
@@ -125,7 +125,7 @@ fun OnBoarding(navController: NavController){
                     .fillMaxWidth()
                     .border(
                         width = 2.dp,
-                        color = border_color,
+                        color = grey_normal,
                         shape = RoundedCornerShape(12.dp)
                     ).clickable(
                         onClick = {
@@ -135,7 +135,7 @@ fun OnBoarding(navController: NavController){
                         }
                     ),
                 colors = CardDefaults.cardColors(
-                    containerColor = background_color,
+                    containerColor = white_normal,
                 )
             ) {
                 Row(

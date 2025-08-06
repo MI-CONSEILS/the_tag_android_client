@@ -25,8 +25,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mokhtarihadjmohamed.thetag.R
-import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
-import com.mokhtarihadjmohamed.thetag.ui.theme.icon_color
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_dark
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light
+import com.mokhtarihadjmohamed.thetag.ui.theme.red_normal
+import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 
 /*
@@ -46,7 +48,7 @@ fun NotificationIconWithBadge(
         modifier = Modifier
             .clickable(onClick = onClick)
             .size(48.dp)
-            .background(background_color, CircleShape)
+            .background(white_normal, CircleShape)
             .padding(8.dp)
     ) {
         Icon(
@@ -54,15 +56,15 @@ fun NotificationIconWithBadge(
             contentDescription = contentDescription,
             modifier = Modifier
                 .size(24.dp)
-                .background(background_color, CircleShape),
-            tint = icon_color
+                .background(white_normal, CircleShape),
+            tint = grey_dark
         )
 
         if (hasNotification) {
             Box(
                 modifier = Modifier
                     .size(10.dp)
-                    .background(Color.Red, shape = CircleShape)
+                    .background(red_normal, shape = CircleShape)
                     .align(Alignment.BottomEnd)
                     .absoluteOffset(x = 0.dp, y = (0).dp)
             ) {
@@ -78,7 +80,7 @@ fun NotificationIconWithBadge(
                             fontFamily = FontFamily(Font(R.font.inter_medium)),
                             fontSize = 6.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color.White,
+                            color = white_normal,
                             textAlign = TextAlign.Center
                         )
                     )

@@ -24,8 +24,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mokhtarihadjmohamed.thetag.R
 import com.mokhtarihadjmohamed.thetag.models.Product
-import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
-import com.mokhtarihadjmohamed.thetag.ui.theme.border_color
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_normal
+import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 /*
 * This Composable is Custom grid item is used in the lzayGrid and it tack product
@@ -34,26 +35,26 @@ import com.mokhtarihadjmohamed.thetag.ui.theme.border_color
 
 @Composable
 fun CustomGridItem(
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
+        .border(
+            width = 2.dp,
+            color = grey_light,
+            shape = RoundedCornerShape(12.dp)
+        ),
     onClick: () -> Unit,
     product: Product,
 ) {
     Card(
-        modifier = Modifier
-            .border(
-                width = 2.dp,
-                color = border_color,
-                shape = RoundedCornerShape(12.dp)
-            )
+        modifier = modifier
             .clickable(
                 onClick = onClick
             ),
         colors = CardDefaults.cardColors(
-            containerColor = background_color,
+            containerColor = white_normal,
         )
     ) {
         Column(
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Image(
@@ -83,7 +84,7 @@ fun CustomGridItem(
                 modifier = Modifier.fillMaxWidth(),
                 text = "${product.price} $",
                 style = TextStyle(
-                    fontFamily = FontFamily(Font(R.font.inter_medium)),
+                    fontFamily = FontFamily(Font(R.font.inter_bold)),
                     fontSize = 12.sp,
                     textAlign = TextAlign.End
                 )

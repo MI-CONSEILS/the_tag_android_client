@@ -13,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,9 +29,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mokhtarihadjmohamed.thetag.R
-import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
-import com.mokhtarihadjmohamed.thetag.ui.theme.border_color
-import com.mokhtarihadjmohamed.thetag.ui.theme.icon_color_50
+import com.mokhtarihadjmohamed.thetag.ui.theme.black_normal
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light_active
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_normal
+import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 
 /*
@@ -44,7 +47,7 @@ fun CustomRadioButton(
         .fillMaxWidth()
         .border(
             width = 2.dp,
-            color = border_color,
+            color = grey_light,
             shape = RoundedCornerShape(8.dp)
         ),
     title: String,
@@ -79,14 +82,20 @@ fun CustomRadioButton(
                     style = TextStyle(
                         fontFamily = FontFamily(Font(R.font.inter_medium)),
                         fontSize = 16.sp,
-                        color = icon_color_50
+                        color = grey_light_active
                     )
                 )
         }
         RadioButton(
             modifier = Modifier.size(10.dp),
             selected = selected,
-            onClick = onClick
+            onClick = onClick,
+            colors = RadioButtonColors(
+                selectedColor = black_normal,
+                unselectedColor = grey_light,
+                disabledSelectedColor = grey_light_active,
+                disabledUnselectedColor = grey_light
+            )
         )
     }
 }

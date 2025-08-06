@@ -13,9 +13,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mokhtarihadjmohamed.thetag.ui.screens.HomeScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.OnBoarding
-import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
 import com.mokhtarihadjmohamed.thetag.ui.screens.OrderScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.ProductScreen
+import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 /*
 * This is main activity, I'm always use one activity
@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity() {
 fun NavigationComposable() {
     val navController = rememberNavController()
     Scaffold(
-        containerColor = background_color
+        containerColor = white_normal
     ) { innerPadding ->
         NavHost(
             navController = navController,

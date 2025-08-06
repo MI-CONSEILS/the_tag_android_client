@@ -54,8 +54,7 @@ import com.mokhtarihadjmohamed.thetag.ui.components.CustomTextField
 import com.mokhtarihadjmohamed.thetag.ui.components.TopBar
 import com.mokhtarihadjmohamed.thetag.models.Product
 import com.mokhtarihadjmohamed.thetag.ui.components.MenuItem
-import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
-import com.mokhtarihadjmohamed.thetag.ui.theme.border_color
+import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 
 /*
@@ -213,7 +212,7 @@ fun HomeScreen(
         modifier = Modifier
             .padding(start = 8.dp, end = 8.dp)
             .fillMaxSize(),
-        containerColor = background_color
+        containerColor = white_normal
     ) { innerPadding ->
         Box(
             modifier = Modifier
@@ -242,8 +241,8 @@ fun HomeScreen(
 
                 LazyVerticalGrid(
                     columns = GridCells.Adaptive(minSize = 128.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     items(products) { product ->
                         CustomGridItem(
@@ -287,7 +286,7 @@ fun HomeScreen(
                     modifier = Modifier
                         .fillMaxWidth(),
                     colors = CardDefaults.cardColors(
-                        containerColor = background_color,
+                        containerColor = white_normal,
                     )
                 ) {
                     Image(

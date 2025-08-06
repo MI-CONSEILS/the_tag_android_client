@@ -20,7 +20,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mokhtarihadjmohamed.thetag.R
-import com.mokhtarihadjmohamed.thetag.ui.theme.icon_color
+import com.mokhtarihadjmohamed.thetag.ui.theme.black_normal
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_dark
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light
 
 /*
 * This Composable is Custom text field is user in multiple on like search normal textfield
@@ -52,10 +54,10 @@ fun CustomTextField(
                     contentDescription = "card icon",
                     modifier = Modifier
                         .size(21.dp),
-                    tint = icon_color
+                    tint = grey_dark
                 )
             BasicTextField(
-                modifier= Modifier.weight(1f),
+                modifier = Modifier.weight(1f),
                 value = value,
                 onValueChange = onValueChange,
                 singleLine = true,
@@ -64,7 +66,7 @@ fun CustomTextField(
                     fontFamily = FontFamily(Font(R.font.inter_medium)),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
-                    color = icon_color,
+                    color = black_normal,
                     textAlign = textAlign
                 ),
                 decorationBox = { innerTextField ->
@@ -73,7 +75,7 @@ fun CustomTextField(
                             text = placeholder, style = TextStyle(
                                 fontFamily = FontFamily(Font(R.font.inter_medium)),
                                 fontSize = 14.sp,
-                                color = icon_color,
+                                color = grey_dark,
                             )
                         )
                     }
@@ -86,7 +88,7 @@ fun CustomTextField(
                     contentDescription = "card icon",
                     modifier = Modifier
                         .size(21.dp),
-                    tint = icon_color
+                    tint = grey_dark
                 )
         }
     }

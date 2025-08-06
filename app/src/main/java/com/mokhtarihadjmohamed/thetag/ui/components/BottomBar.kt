@@ -20,9 +20,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.mokhtarihadjmohamed.thetag.R
-import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
-import com.mokhtarihadjmohamed.thetag.ui.theme.icon_color
-import com.mokhtarihadjmohamed.thetag.ui.theme.icon_color_50
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_dark
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light_active
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_normal
+import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 
 /*
@@ -45,8 +47,8 @@ fun BottomBar(navController: NavController) {
 
     BottomAppBar(
         modifier = Modifier.shadow(14.dp),
-        containerColor = background_color,
-        contentColor = icon_color,
+        containerColor = white_normal,
+        contentColor = grey_normal,
     ) {
         Row(
             modifier = Modifier.fillMaxSize(),
@@ -64,9 +66,9 @@ fun BottomBar(navController: NavController) {
                             contentDescription = item.route,
                             modifier = Modifier.size(24.dp),
                             tint = if (selected) {
-                                icon_color
+                                grey_dark
                             } else {
-                                icon_color_50
+                                grey_light_active
                             },
                         )
                     },
@@ -89,9 +91,9 @@ fun BottomBar(navController: NavController) {
                                 textAlign = TextAlign.Center,
                             ),
                             color = if (selected) {
-                                icon_color
+                                grey_dark
                             } else {
-                                icon_color_50
+                                grey_light_active
                             }
                         )
                     }

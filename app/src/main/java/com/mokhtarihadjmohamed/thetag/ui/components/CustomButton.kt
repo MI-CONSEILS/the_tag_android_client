@@ -21,9 +21,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mokhtarihadjmohamed.thetag.R
-import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
-import com.mokhtarihadjmohamed.thetag.ui.theme.black_900
-import com.mokhtarihadjmohamed.thetag.ui.theme.border_color
+import com.mokhtarihadjmohamed.thetag.ui.theme.black_normal
+import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 /*
 * This Composable is for my custom button it not have a lot in just a box and Text inside
@@ -32,7 +31,7 @@ import com.mokhtarihadjmohamed.thetag.ui.theme.border_color
 fun CustomButton(
     modifier: Modifier = Modifier,
     label: String,
-    background: Color = black_900,
+    background: Color = black_normal,
     textColor: Color,
     padding: PaddingValues = PaddingValues(16.dp),
     onClick: () -> Unit,
@@ -64,8 +63,8 @@ fun CustomButton(
 fun PreviewCustomButton() {
     CustomButton(
         label = "Ajouter 1 au panier | 14.65\$",
-        background = black_900,
-        textColor = background_color
+        background = black_normal,
+        textColor = white_normal
     ) { }
 
 }

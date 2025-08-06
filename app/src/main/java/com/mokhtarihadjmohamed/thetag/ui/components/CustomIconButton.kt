@@ -14,8 +14,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.mokhtarihadjmohamed.thetag.R
-import com.mokhtarihadjmohamed.thetag.ui.theme.black_900
-import com.mokhtarihadjmohamed.thetag.ui.theme.icon_color
+import com.mokhtarihadjmohamed.thetag.ui.theme.black_normal
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_normal
 
 /*
 * this is a custom button, it just simple icon and onclick and can change the icon
@@ -27,9 +27,9 @@ fun CustomIconButton(
     modifier: Modifier = Modifier,
     icon: Int = R.drawable.menu,
     iconSize: Int = 16,
-    iconColor: Color = black_900,
+    iconColor: Color = black_normal,
     borderWidth: Int = 2,
-    borderColor: Color = icon_color,
+    borderColor: Color = grey_normal,
     roundedCorner: Int = 24,
     onClick: () -> Unit
 ) {

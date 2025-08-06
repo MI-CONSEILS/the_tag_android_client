@@ -22,6 +22,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -41,9 +44,10 @@ import com.mokhtarihadjmohamed.thetag.ui.components.CustomButton
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomIconButton
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomRadioButton
 import com.mokhtarihadjmohamed.thetag.ui.components.MenuItem
-import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
-import com.mokhtarihadjmohamed.thetag.ui.theme.black_900
-import com.mokhtarihadjmohamed.thetag.ui.theme.border_color
+import com.mokhtarihadjmohamed.thetag.ui.theme.black_normal
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_normal
+import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 /*
 * This is ProductScreen:
@@ -82,9 +86,7 @@ fun ProductScreen(navController: NavController) {
     var amount by remember { mutableStateOf(1) }
 
     Scaffold(
-        modifier = Modifier
-            .padding(8.dp),
-        containerColor = background_color,
+        containerColor = white_normal,
         topBar = {
             Row {
                 CustomIconButton(
@@ -92,7 +94,7 @@ fun ProductScreen(navController: NavController) {
                     borderWidth = 0,
                     borderColor = Color.Transparent,
                     iconSize = 24
-                    ) {
+                ) {
                     navController.popBackStack()
                 }
                 Spacer(
@@ -105,9 +107,18 @@ fun ProductScreen(navController: NavController) {
         bottomBar = {
             Column(
                 modifier = Modifier
-                    .padding(8.dp),
+                    .drawBehind {
+                        val strokeWidth = 2.dp.toPx()
+                        drawLine(
+                            color = grey_light,
+                            start = Offset(0f, 0f),
+                            end = Offset(size.width, 0f),
+                            strokeWidth = strokeWidth
+                        )
+                    }
+                    .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -138,8 +149,8 @@ fun ProductScreen(navController: NavController) {
                 CustomButton(
                     modifier = Modifier.fillMaxWidth(),
                     label = "Ajouter 1 au panier | 14.65\$",
-                    background = black_900,
-                    textColor = background_color
+                    background = black_normal,
+                    textColor = white_normal
                 ) { }
             }
         }
@@ -147,7 +158,9 @@ fun ProductScreen(navController: NavController) {
         Column(
             modifier = Modifier.padding(
                 top = innerPadding.calculateTopPadding(),
-                bottom = innerPadding.calculateBottomPadding()
+                start = 8.dp,
+                bottom = innerPadding.calculateBottomPadding() + 4.dp,
+                end = 8.dp,
             ),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
@@ -202,7 +215,7 @@ fun ProductScreen(navController: NavController) {
                 MenuItem(
                     modifier = Modifier.border(
                         width = 1.dp,
-                        color = border_color,
+                        color = grey_light,
                         shape = RoundedCornerShape(8.dp)
                     ),
                     type = "Obligatoire",

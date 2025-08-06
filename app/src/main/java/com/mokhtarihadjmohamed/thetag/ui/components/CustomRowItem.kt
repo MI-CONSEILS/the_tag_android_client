@@ -28,8 +28,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mokhtarihadjmohamed.thetag.R
 import com.mokhtarihadjmohamed.thetag.models.Order
-import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
-import com.mokhtarihadjmohamed.thetag.ui.theme.border_color
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_normal
+import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 /*
 * This Composable is Custom row item is used in the lzayColumn and it tack order
@@ -38,7 +39,8 @@ import com.mokhtarihadjmohamed.thetag.ui.theme.border_color
 
 @Composable
 fun CustomRowItem(
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
+        .fillMaxWidth(),
     onClick: () -> Unit,
     order: Order,
 ) {
@@ -57,17 +59,16 @@ fun CustomRowItem(
 
         Card(
             modifier = Modifier
-                .fillMaxWidth()
-                .border(
-                    width = 2.dp,
-                    color = border_color,
-                    shape = RoundedCornerShape(12.dp)
-                )
                 .clickable(
                     onClick = onClick
+                )
+                .border(
+                    width = 2.dp,
+                    color = grey_light,
+                    shape = RoundedCornerShape(12.dp)
                 ),
             colors = CardDefaults.cardColors(
-                containerColor = background_color,
+                containerColor = white_normal,
             )
         ) {
             Row(

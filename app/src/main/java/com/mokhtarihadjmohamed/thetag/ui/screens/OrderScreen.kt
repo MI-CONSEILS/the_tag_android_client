@@ -31,7 +31,7 @@ import com.mokhtarihadjmohamed.thetag.ui.components.TopBar
 import com.mokhtarihadjmohamed.thetag.models.Notification
 import com.mokhtarihadjmohamed.thetag.models.Order
 import com.mokhtarihadjmohamed.thetag.models.Product
-import com.mokhtarihadjmohamed.thetag.ui.theme.background_color
+import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 /*
 * This is home screen you will find:
@@ -134,7 +134,7 @@ fun OrderScreen(navController: NavController) {
         modifier = Modifier
             .padding(start = 8.dp, end = 8.dp)
             .fillMaxSize(),
-        containerColor = background_color
+        containerColor = white_normal
     ) { innerPadding ->
         Column(
             modifier = Modifier
