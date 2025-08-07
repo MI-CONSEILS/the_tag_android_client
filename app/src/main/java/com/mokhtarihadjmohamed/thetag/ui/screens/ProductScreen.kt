@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -45,7 +47,9 @@ import com.mokhtarihadjmohamed.thetag.ui.components.CustomIconButton
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomRadioButton
 import com.mokhtarihadjmohamed.thetag.ui.components.MenuItem
 import com.mokhtarihadjmohamed.thetag.ui.theme.black_normal
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_dark
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light_active
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_normal
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
@@ -82,7 +86,7 @@ fun ProductScreen(navController: NavController) {
         )
     )
 
-    var selected by remember { mutableStateOf(0) }
+    var selected by remember { mutableStateOf<Addition?>(null) }
     var amount by remember { mutableStateOf(1) }
 
     Scaffold(
@@ -156,12 +160,14 @@ fun ProductScreen(navController: NavController) {
         }
     ) { innerPadding ->
         Column(
-            modifier = Modifier.padding(
-                top = innerPadding.calculateTopPadding(),
-                start = 8.dp,
-                bottom = innerPadding.calculateBottomPadding() + 4.dp,
-                end = 8.dp,
-            ),
+            modifier = Modifier
+                .padding(
+                    top = innerPadding.calculateTopPadding(),
+                    start = 8.dp,
+                    bottom = innerPadding.calculateBottomPadding() + 4.dp,
+                    end = 8.dp,
+                )
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Image(
@@ -204,14 +210,27 @@ fun ProductScreen(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(
-                    text = "Choisissez votre viande!",
-                    style = TextStyle(
-                        fontFamily = FontFamily(Font(R.font.inter_medium)),
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    Text(
+                        text = "Choisissez votre viande!",
+                        style = TextStyle(
+                            fontFamily = FontFamily(Font(R.font.inter_medium)),
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold
+                        )
                     )
-                )
+                    Text(
+                        text = "Choisissez-en 1.",
+                        style = TextStyle(
+                            fontFamily = FontFamily(Font(R.font.inter_medium)),
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = grey_light_active
+                        )
+                    )
+                }
                 MenuItem(
                     modifier = Modifier.border(
                         width = 1.dp,
@@ -222,17 +241,17 @@ fun ProductScreen(navController: NavController) {
                     icon = R.drawable.double_check
                 )
             }
-            LazyColumn(
+            Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                items(product.additions.size) { index ->
+                product.additions.forEach { addition ->
                     CustomRadioButton(
-                        title = product.additions[index].name,
-                        plusPrice = product.additions[index].price,
+                        title = addition.name,
+                        plusPrice = addition.price,
                         onClick = {
-                            selected = index
+                            selected = addition
                         },
-                        selected = selected == index
+                        selected = selected == addition
                     )
                 }
             }

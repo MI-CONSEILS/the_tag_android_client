@@ -1,23 +1,28 @@
 package com.mokhtarihadjmohamed.thetag.ui.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,9 +30,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
@@ -37,7 +44,6 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -46,14 +52,18 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Popup
+import androidx.compose.ui.window.PopupProperties
 import androidx.navigation.NavController
 import com.mokhtarihadjmohamed.thetag.R
 import com.mokhtarihadjmohamed.thetag.ui.components.BottomBar
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomGridItem
-import com.mokhtarihadjmohamed.thetag.ui.components.CustomTextField
 import com.mokhtarihadjmohamed.thetag.ui.components.TopBar
 import com.mokhtarihadjmohamed.thetag.models.Product
+import com.mokhtarihadjmohamed.thetag.ui.components.CustomizableSearchBar
 import com.mokhtarihadjmohamed.thetag.ui.components.MenuItem
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_dark
+import com.mokhtarihadjmohamed.thetag.ui.theme.red_normal
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 
@@ -70,7 +80,7 @@ import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 @Composable
 fun HomeScreen(
-    navController: NavController, maxImageSize: Dp = 250.dp,
+    navController: NavController, maxImageSize: Dp = 200.dp,
 ) {
 
     var currentImageSize by remember { mutableStateOf(maxImageSize) }
@@ -97,10 +107,20 @@ fun HomeScreen(
         }
     }
 
-    var text by remember { mutableStateOf("") }
+    var search by remember { mutableStateOf("") }
+
+    val textFieldState = rememberSaveable(saver = TextFieldState.Saver) {
+        TextFieldState()
+    }
+
+    val allItems =
+        listOf("Chocolate boba", "grilled beef burger", "honey bee cake", "classic momos")
+    var filteredItems by rememberSaveable { mutableStateOf(allItems) }
 
     val menusList: List<String> =
         stringArrayResource(R.array.menus).toCollection(destination = ArrayList())
+
+    var isExpand by rememberSaveable { mutableStateOf(false) }
 
     val products: List<Product> = arrayListOf(
         Product(
@@ -199,12 +219,16 @@ fun HomeScreen(
 
     Scaffold(
         topBar = {
-            TopBar(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(4.dp),
-                title = "Burger King"
-            )
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                TopBar(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(4.dp),
+                    title = "Burger King"
+                )
+            }
         },
         bottomBar = {
             BottomBar(navController)
@@ -216,94 +240,128 @@ fun HomeScreen(
     ) { innerPadding ->
         Box(
             modifier = Modifier
-                .padding(innerPadding)
-                .nestedScroll(nestedScrollConnection),
-        ) {
-            // TODO grid of products
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-                    .offset {
-                        IntOffset(0, currentImageSize.roundToPx())
-                    },
-                verticalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "Menus",
-                    style = TextStyle(
-                        fontFamily = FontFamily(Font(R.font.inter_medium)),
-                        fontSize = 32.sp,
-                        fontWeight = FontWeight.Bold
-                    )
+                .fillMaxSize()
+                .padding(
+                    top = innerPadding.calculateTopPadding() + 8.dp,
+                    bottom = innerPadding.calculateBottomPadding()
                 )
+        ) {
+            // TODO Search field
+            CustomizableSearchBar(
+                modifier = Modifier
+                    .border(1.dp, Color.Gray, RoundedCornerShape(8.dp))
+                    .padding(12.dp)
+                    .fillMaxWidth(),
+                query = search,
+                onQueryChange = {
+                    search = it
+                },
+                onSearch = { query ->
+                    filteredItems = if (query.isBlank()) {
+                        allItems
+                    } else {
+                        allItems.filter { it.contains(query, ignoreCase = true) }
+                    }
+                },
+                searchResults = filteredItems,
+                onResultClick = {
+                    isExpand = false
+                },
+                onExpand = {
+                    isExpand = it
+                },
+                leadingContent = {
+                    Icon(
+                        painter = painterResource(R.drawable.notice),
+                        contentDescription = "card icon",
+                        modifier = Modifier
+                            .size(21.dp),
+                        tint = grey_dark
+                    )
+                }
+            )
 
-                LazyVerticalGrid(
-                    columns = GridCells.Adaptive(minSize = 128.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+            Box(
+                modifier = Modifier
+                    .padding(
+                        top = 8.dp,
+                    )
+                    .nestedScroll(nestedScrollConnection)
+                    .blur(radius = if (isExpand) 12.dp else 0.dp)
+                    .offset(y = 56.dp),
+            ) {
+                // TODO grid of products
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                        .offset {
+                            IntOffset(0, currentImageSize.roundToPx())
+                        },
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-                    items(products) { product ->
-                        CustomGridItem(
-                            onClick = {
-                                navController.navigate("ProductScreen")
-                            },
-                            product = product
+                    Text(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Menus",
+                        style = TextStyle(
+                            fontFamily = FontFamily(Font(R.font.inter_medium)),
+                            fontSize = 32.sp,
+                            fontWeight = FontWeight.Bold
                         )
+                    )
+
+                    LazyVerticalGrid(
+                        modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding()),
+                        columns = GridCells.Adaptive(minSize = 128.dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    ) {
+                        items(products) { product ->
+                            CustomGridItem(
+                                onClick = {
+                                    navController.navigate("ProductScreen")
+                                },
+                                product = product
+                            )
+                        }
                     }
                 }
-            }
 
-            // TODO Header section
-            Column(
-                Modifier
-                    .fillMaxWidth()
-                    .graphicsLayer {
-                        scaleY = imageScale
-                        // Center the image vertically as it scales
-                        translationY = -(maxImageSize.toPx() - currentImageSize.toPx()) / 2f
-                    },
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                // TODO Search field
-                CustomTextField(
-                    modifier = Modifier
-                        .border(1.dp, Color.Gray, RoundedCornerShape(8.dp))
-                        .padding(8.dp)
-                        .fillMaxWidth(),
-                    value = text,
-                    onValueChange = {
-                        text = it
-                    },
-                    placeholder = stringResource(R.string.search),
-                    icon = R.drawable.search,
-                    endIcon = R.drawable.fillter
-                )
-                // TODO Card Ads
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    colors = CardDefaults.cardColors(
-                        containerColor = white_normal,
-                    )
+                // TODO Header section
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .graphicsLayer {
+                            scaleY = imageScale
+                            translationY = -(maxImageSize.toPx() - currentImageSize.toPx()) / 2f
+                        },
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Image(
+                    // TODO Card Ads
+                    Card(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(150.dp),
-                        contentScale = ContentScale.Crop,
-                        painter = painterResource(R.drawable.ads),
-                        contentDescription = "image ads"
-                    )
-                }
-                // TODO Menus bar
-                LazyRow(
-                    horizontalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    items(menusList) { item ->
-                        MenuItem(type = item)
+                            .fillMaxWidth(),
+                        colors = CardDefaults.cardColors(
+                            containerColor = white_normal,
+                        )
+                    ) {
+                        Image(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(150.dp),
+                            contentScale = ContentScale.Crop,
+                            painter = painterResource(R.drawable.ads),
+                            contentDescription = "image ads"
+                        )
+                    }
+                    // TODO Menus bar
+                    LazyRow(
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        items(menusList) { item ->
+                            MenuItem(type = item)
+                        }
                     }
                 }
             }
