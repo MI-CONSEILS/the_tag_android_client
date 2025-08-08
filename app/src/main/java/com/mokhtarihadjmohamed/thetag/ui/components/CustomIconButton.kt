@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,21 +32,23 @@ fun CustomIconButton(
     borderWidth: Int = 2,
     borderColor: Color = grey_normal,
     roundedCorner: Int = 24,
+    background: Color = Color.Transparent,
+    paddingValues: PaddingValues = PaddingValues(8.dp),
     onClick: () -> Unit
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .border(
                 width = borderWidth.dp,
                 color = borderColor,
                 shape = RoundedCornerShape(roundedCorner.dp)
             )
             .background(
-                color = Color.Transparent,
+                color = background,
                 shape = RoundedCornerShape(roundedCorner.dp)
             )
             .padding(
-                8.dp
+                paddingValues
             )
             .clickable(onClick = onClick),
     ) {

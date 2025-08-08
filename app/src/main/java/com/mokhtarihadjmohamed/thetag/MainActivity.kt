@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.mokhtarihadjmohamed.thetag.ui.screens.BasketScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.HomeScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.OnBoarding
 import com.mokhtarihadjmohamed.thetag.ui.screens.OrderScreen
@@ -45,13 +46,14 @@ fun NavigationComposable() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "HomeScreen",
+            startDestination = "BasketScreen",
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("OnBoarding") { OnBoarding(navController) }
             composable("HomeScreen") { HomeScreen(navController) }
             composable("OrderScreen") { OrderScreen(navController) }
             composable("ProductScreen") { ProductScreen(navController) }
+            composable("BasketScreen") { BasketScreen(navController) }
         }
     }
 }

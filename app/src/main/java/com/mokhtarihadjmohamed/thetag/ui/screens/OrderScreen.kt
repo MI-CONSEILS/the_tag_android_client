@@ -25,12 +25,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.mokhtarihadjmohamed.thetag.R
 import com.mokhtarihadjmohamed.thetag.ui.components.BottomBar
-import com.mokhtarihadjmohamed.thetag.ui.components.CustomRowItem
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomTextField
 import com.mokhtarihadjmohamed.thetag.ui.components.TopBar
 import com.mokhtarihadjmohamed.thetag.models.Notification
 import com.mokhtarihadjmohamed.thetag.models.Order
 import com.mokhtarihadjmohamed.thetag.models.Product
+import com.mokhtarihadjmohamed.thetag.ui.components.CustomRowOrderItem
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 /*
@@ -125,7 +125,9 @@ fun OrderScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(4.dp),
-                title = "Burger King"
+                title = "Burger King",
+                onBasketClick = {},
+                onChatClick = {}
             )
         },
         bottomBar = {
@@ -163,7 +165,7 @@ fun OrderScreen(navController: NavController) {
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 items(orders) { order ->
-                    CustomRowItem(
+                    CustomRowOrderItem(
                         onClick = {
                             notification.showNotification(context)
                         },

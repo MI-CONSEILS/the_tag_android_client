@@ -1,7 +1,6 @@
 package com.mokhtarihadjmohamed.thetag.ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -29,7 +28,6 @@ import androidx.compose.ui.unit.sp
 import com.mokhtarihadjmohamed.thetag.R
 import com.mokhtarihadjmohamed.thetag.models.Order
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light
-import com.mokhtarihadjmohamed.thetag.ui.theme.grey_normal
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 /*
@@ -38,7 +36,7 @@ import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 * */
 
 @Composable
-fun CustomRowItem(
+fun CustomRowOrderItem(
     modifier: Modifier = Modifier
         .fillMaxWidth(),
     onClick: () -> Unit,

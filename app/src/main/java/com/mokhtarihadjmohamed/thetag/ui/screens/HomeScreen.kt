@@ -104,10 +104,6 @@ fun HomeScreen(
 
     var search by remember { mutableStateOf("") }
 
-    val textFieldState = rememberSaveable(saver = TextFieldState.Saver) {
-        TextFieldState()
-    }
-
     val allItems =
         listOf("Chocolate boba", "grilled beef burger", "honey bee cake", "classic momos")
     var filteredItems by rememberSaveable { mutableStateOf(allItems) }
@@ -208,9 +204,8 @@ fun HomeScreen(
             price = 18.0,
             imageURl = "",
             type = "Burgers"
-        ),
-
         )
+    )
 
     Scaffold(
         topBar = {
@@ -221,8 +216,11 @@ fun HomeScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(4.dp),
-                    title = "Burger King"
-                )
+                    title = "Burger King",
+                    onBasketClick = {
+                        navController.navigate("BasketScreen")
+                    },
+                    onChatClick = {})
             }
         },
         bottomBar = {
@@ -244,37 +242,30 @@ fun HomeScreen(
             // TODO Search field
             CustomizableSearchBar(
                 modifier = Modifier
-                    .border(1.dp, Color.Gray, RoundedCornerShape(8.dp))
+                    .border(
+                        1.dp, Color.Gray, RoundedCornerShape(8.dp)
+                    )
                     .padding(12.dp)
-                    .fillMaxWidth(),
-                query = search,
-                onQueryChange = {
+                    .fillMaxWidth(), query = search, onQueryChange = {
                     search = it
-                },
-                onSearch = { query ->
+                }, onSearch = { query ->
                     filteredItems = if (query.isBlank()) {
                         allItems
                     } else {
                         allItems.filter { it.contains(query, ignoreCase = true) }
                     }
-                },
-                searchResults = filteredItems,
-                onResultClick = {
+                }, searchResults = filteredItems, onResultClick = {
                     isExpand = false
-                },
-                onExpand = {
+                }, onExpand = {
                     isExpand = it
-                },
-                leadingContent = {
+                }, leadingContent = {
                     Icon(
                         painter = painterResource(R.drawable.notice),
                         contentDescription = "card icon",
-                        modifier = Modifier
-                            .size(21.dp),
+                        modifier = Modifier.size(21.dp),
                         tint = grey_dark
                     )
-                }
-            )
+                })
 
             Box(
                 modifier = Modifier
@@ -292,13 +283,10 @@ fun HomeScreen(
                         .padding(8.dp)
                         .offset {
                             IntOffset(0, currentImageSize.roundToPx())
-                        },
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                        }, verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = "Menus",
-                        style = TextStyle(
+                        modifier = Modifier.fillMaxWidth(), text = "Menus", style = TextStyle(
                             fontFamily = FontFamily(Font(R.font.inter_medium)),
                             fontSize = 32.sp,
                             fontWeight = FontWeight.Bold
@@ -315,8 +303,7 @@ fun HomeScreen(
                             CustomGridItem(
                                 onClick = {
                                     navController.navigate("ProductScreen")
-                                },
-                                product = product
+                                }, product = product
                             )
                         }
                     }
@@ -335,9 +322,7 @@ fun HomeScreen(
                 ) {
                     // TODO Card Ads
                     Card(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        colors = CardDefaults.cardColors(
+                        modifier = Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(
                             containerColor = white_normal,
                         )
                     ) {
