@@ -28,9 +28,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RenderEffect
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -141,7 +143,6 @@ fun CustomizableSearchBar(
                 offset = IntOffset(x = 0, y = 150),
                 properties = PopupProperties(
                     excludeFromSystemGesture = true,
-                    focusable = true
                 ),
                 onDismissRequest = { showResults = false }
             ) {
@@ -149,7 +150,6 @@ fun CustomizableSearchBar(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp)
-                        .background(Color(0x40FFFFFF))
                         .border(1.dp, grey_light, RoundedCornerShape(8.dp))
                 ) {
                     LazyColumn(
@@ -184,6 +184,16 @@ fun CustomizableSearchBar(
                     }
                 }
             }
+
+        if (showResults) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color(0x40FFFFFF))
+                    .pointerInput(Unit) {}
+                    .blur(4.dp) // Optional blur
+            )
+        }
         onExpand(showResults)
     }
 }

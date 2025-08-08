@@ -1,12 +1,10 @@
 package com.mokhtarihadjmohamed.thetag.ui.screens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -52,8 +50,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Popup
-import androidx.compose.ui.window.PopupProperties
 import androidx.navigation.NavController
 import com.mokhtarihadjmohamed.thetag.R
 import com.mokhtarihadjmohamed.thetag.ui.components.BottomBar
@@ -63,7 +59,6 @@ import com.mokhtarihadjmohamed.thetag.models.Product
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomizableSearchBar
 import com.mokhtarihadjmohamed.thetag.ui.components.MenuItem
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_dark
-import com.mokhtarihadjmohamed.thetag.ui.theme.red_normal
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 
