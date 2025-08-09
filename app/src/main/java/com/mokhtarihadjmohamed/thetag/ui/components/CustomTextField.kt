@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -35,6 +36,7 @@ fun CustomTextField(
     value: String,
     onValueChange: (String) -> Unit,
     placeholder: String = "Enter text",
+    placeholderColor: Color = grey_dark,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     icon: Int? = null,
     endIcon: Int? = null,
@@ -65,7 +67,6 @@ fun CustomTextField(
                 textStyle = TextStyle(
                     fontFamily = FontFamily(Font(R.font.inter_medium)),
                     fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
                     color = black_normal,
                     textAlign = textAlign
                 ),
@@ -75,7 +76,7 @@ fun CustomTextField(
                             text = placeholder, style = TextStyle(
                                 fontFamily = FontFamily(Font(R.font.inter_medium)),
                                 fontSize = 14.sp,
-                                color = grey_dark,
+                                color = placeholderColor,
                             )
                         )
                     }

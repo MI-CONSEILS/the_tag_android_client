@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -41,52 +42,71 @@ fun CustomButton(
     modifier: Modifier = Modifier,
     label: String,
     background: Color = black_normal,
-    textColor: Color,
+    textColor: Color = white_normal,
+    textSize: Int = 14,
     icon: Int? = null,
+    iconPosition: IconPosition = IconPosition.TOP,
     borderColor: Color = Color.Transparent,
     borderRadios: Int = 4,
     padding: PaddingValues = PaddingValues(16.dp),
     onClick: () -> Unit,
 ) {
+
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
-            .border(
-                width = 2.dp,
-                color = borderColor,
-                shape = RoundedCornerShape(borderRadios.dp)
-            )
-            .background(
-                color = background,
-                shape = RoundedCornerShape(borderRadios.dp)
-            )
+            .border(2.dp, borderColor, RoundedCornerShape(borderRadios.dp))
+            .background(background, RoundedCornerShape(borderRadios.dp))
             .clickable(onClick = onClick)
             .padding(padding)
     ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            if (icon != null)
-                Icon(
+        if (iconPosition == IconPosition.TOP) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                if (icon != null) Icon(
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(icon),
-                    contentDescription = "icon",
+                    contentDescription = null,
                     tint = textColor
                 )
-
-            Text(
-                text = label, style = TextStyle(
-                    fontFamily = FontFamily(Font(R.font.inter_medium)),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                    color = textColor
+                Text(
+                    text = label,
+                    style = TextStyle(
+                        fontFamily = FontFamily(Font(R.font.inter_medium)),
+                        fontSize = textSize.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = textColor
+                    )
                 )
-            )
+            }
+        } else {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (icon != null) Icon(
+                    modifier = Modifier.size(24.dp),
+                    painter = painterResource(icon),
+                    contentDescription = null,
+                    tint = textColor
+                )
+                Text(
+                    text = label,
+                    style = TextStyle(
+                        fontFamily = FontFamily(Font(R.font.inter_medium)),
+                        fontSize = textSize.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = textColor
+                    )
+                )
+            }
         }
     }
 }
 
+enum class IconPosition { TOP, START }
 
 @Preview(showBackground = true)
 @Composable

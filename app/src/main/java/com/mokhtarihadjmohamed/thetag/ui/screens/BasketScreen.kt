@@ -1,6 +1,5 @@
 package com.mokhtarihadjmohamed.thetag.ui.screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -29,7 +28,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -44,12 +42,9 @@ import androidx.navigation.compose.rememberNavController
 import com.mokhtarihadjmohamed.thetag.R
 import com.mokhtarihadjmohamed.thetag.models.Product
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomButton
-import com.mokhtarihadjmohamed.thetag.ui.components.CustomIconButton
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomRowProduct
 import com.mokhtarihadjmohamed.thetag.ui.components.TopBar
 import com.mokhtarihadjmohamed.thetag.ui.theme.black_normal
-import com.mokhtarihadjmohamed.thetag.ui.theme.blue_dark
-import com.mokhtarihadjmohamed.thetag.ui.theme.grey_dark
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light_active
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
@@ -103,7 +98,9 @@ fun BasketScreen(navController: NavController) {
                     label = "Payer",
                     background = black_normal,
                     textColor = white_normal
-                ) { }
+                ) {
+                    navController.navigate("AdditionProductScreen")
+                }
             }
         }
     ) { innerPadding ->

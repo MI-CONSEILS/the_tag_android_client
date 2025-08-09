@@ -24,6 +24,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -58,6 +59,9 @@ import com.mokhtarihadjmohamed.thetag.ui.components.TopBar
 import com.mokhtarihadjmohamed.thetag.models.Product
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomizableSearchBar
 import com.mokhtarihadjmohamed.thetag.ui.components.MenuItem
+import com.mokhtarihadjmohamed.thetag.ui.components.OpinionDialog
+import com.mokhtarihadjmohamed.thetag.ui.components.OrderReadyDialog
+import com.mokhtarihadjmohamed.thetag.ui.components.OrderReceivedDialog
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_dark
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
@@ -80,6 +84,13 @@ fun HomeScreen(
 
     var currentImageSize by remember { mutableStateOf(maxImageSize) }
     var imageScale by remember { mutableFloatStateOf(1f) }
+    val savedStateHandle = navController.previousBackStackEntry?.savedStateHandle
+    var showDialog by remember {
+        mutableStateOf(
+            savedStateHandle?.get<Boolean>("showDialog") ?: false
+        )
+    }
+
 
     val nestedScrollConnection = remember {
         object : NestedScrollConnection {
@@ -346,5 +357,30 @@ fun HomeScreen(
                 }
             }
         }
+
+        OrderReadyDialog(
+            showDialog = showDialog,
+            number = 57,
+        ) {
+            showDialog = false
+        }
+
+//        OpinionDialog(
+//            showDialog = showDialog,
+//        ) {
+//            showDialog = false
+//        }
+
+//        OrderReceivedDialog(
+//            showDialog = showDialog,
+//            title = "Commande bien reçue !",
+//            description = "Nous vous informerons dès que votre commande sera prête à être récupérée.",
+//        ) {
+//            showDialog = false
+//            navController.navigate("HomeScreen") {
+//                popUpTo(0) { inclusive = true }
+//                launchSingleTop = true
+//            }
+//        }
     }
 }

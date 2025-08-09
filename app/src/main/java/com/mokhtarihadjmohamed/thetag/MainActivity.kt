@@ -11,10 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.mokhtarihadjmohamed.thetag.ui.screens.AdditionProductScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.BasketScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.HomeScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.OnBoarding
 import com.mokhtarihadjmohamed.thetag.ui.screens.OrderScreen
+import com.mokhtarihadjmohamed.thetag.ui.screens.PaymentScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.ProductScreen
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
@@ -46,7 +48,7 @@ fun NavigationComposable() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "BasketScreen",
+            startDestination = "HomeScreen",
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("OnBoarding") { OnBoarding(navController) }
@@ -54,6 +56,8 @@ fun NavigationComposable() {
             composable("OrderScreen") { OrderScreen(navController) }
             composable("ProductScreen") { ProductScreen(navController) }
             composable("BasketScreen") { BasketScreen(navController) }
+            composable("AdditionProductScreen") { AdditionProductScreen(navController) }
+            composable("PaymentScreen") { PaymentScreen(navController) }
         }
     }
 }
