@@ -21,6 +21,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mokhtarihadjmohamed.thetag.R
+import com.mokhtarihadjmohamed.thetag.ui.theme.black_normal
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_dark
 
 /*
 * This Composable is Top bar and it have logo name category and notification icon like cart
@@ -31,6 +33,7 @@ import com.mokhtarihadjmohamed.thetag.R
 fun TopBar(
     modifier: Modifier = Modifier,
     title: String,
+    iconColor: Color = grey_dark,
     onChatClick: () -> Unit,
     onBasketClick: () -> Unit
 ) {
@@ -59,12 +62,14 @@ fun TopBar(
             icon = painterResource(R.drawable.shooping_cart),
             hasNotification = true,
             onClick = onBasketClick,
+            iconColor = iconColor,
             number = 4
         )
 
         NotificationIconWithBadge(
             icon = painterResource(R.drawable.chat),
             hasNotification = false,
+            iconColor = iconColor,
             onClick = onChatClick,
         )
 
@@ -75,7 +80,8 @@ fun TopBar(
 fun TopBar(
     modifier: Modifier = Modifier,
     title: String,
-    onclick: () -> Unit
+    iconColor: Color = black_normal,
+    onclick: () -> Unit,
 ) {
     Row(
         modifier = modifier,
@@ -87,6 +93,7 @@ fun TopBar(
             borderWidth = 0,
             borderColor = Color.Transparent,
             iconSize = 24,
+            iconColor = iconColor,
             onClick = onclick
         )
         Text(

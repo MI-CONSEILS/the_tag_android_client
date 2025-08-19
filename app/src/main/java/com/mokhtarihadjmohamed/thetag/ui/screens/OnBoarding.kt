@@ -109,15 +109,20 @@ fun OnBoarding(navController: NavController) {
                         background = white_normal,
                         textColor = black_normal,
                         borderRadios = 18
-                    ) { }
+                    ) {
+                        navController.navigate("RegisterScreen")
+                    }
 
                     CustomButton(
                         modifier = Modifier.weight(3f),
                         label = "Se connecter",
                         background = Color.Transparent,
-                        borderColor = grey_dark,
+                        borderColor = white_normal,
+                        textColor = white_normal,
                         borderRadios = 18
-                    ) { }
+                    ) {
+                        navController.navigate("LogInScreen")
+                    }
 
                     Spacer(
                         modifier = Modifier.weight(

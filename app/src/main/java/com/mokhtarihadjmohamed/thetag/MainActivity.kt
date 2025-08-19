@@ -14,11 +14,15 @@ import androidx.navigation.compose.rememberNavController
 import com.mokhtarihadjmohamed.thetag.ui.screens.AdditionProductScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.BasketScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.HomeScreen
+import com.mokhtarihadjmohamed.thetag.ui.screens.LogInScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.OnBoarding
 import com.mokhtarihadjmohamed.thetag.ui.screens.OrderScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.OrderType
+import com.mokhtarihadjmohamed.thetag.ui.screens.OtpScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.PaymentScreen
+import com.mokhtarihadjmohamed.thetag.ui.screens.PhoneNumberScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.ProductScreen
+import com.mokhtarihadjmohamed.thetag.ui.screens.RegisterScreen
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 /*
@@ -49,10 +53,14 @@ fun NavigationComposable() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "OnBoarding",
+            startDestination = "LogInScreen",
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("OnBoarding") { OnBoarding(navController) }
+            composable("LogInScreen") { LogInScreen(navController) }
+            composable("RegisterScreen") { RegisterScreen(navController) }
+            composable("PhoneNumberScreen") { PhoneNumberScreen(navController) }
+            composable("OtpScreen") { OtpScreen(navController) }
             composable("OrderType") { OrderType(navController) }
             composable("HomeScreen") { HomeScreen(navController) }
             composable("OrderScreen") { OrderScreen(navController) }

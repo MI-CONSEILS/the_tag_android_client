@@ -1,5 +1,6 @@
 package com.mokhtarihadjmohamed.thetag.ui.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -8,7 +9,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -29,13 +30,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mokhtarihadjmohamed.thetag.R
 import com.mokhtarihadjmohamed.thetag.ui.theme.black_normal
-import com.mokhtarihadjmohamed.thetag.ui.theme.red_dark
-import com.mokhtarihadjmohamed.thetag.ui.theme.red_light
-import com.mokhtarihadjmohamed.thetag.ui.theme.red_normal
+import com.mokhtarihadjmohamed.thetag.ui.theme.grey_normal
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 /*
-* This Composable is for my custom button it not have a lot in just a box and Text inside
+* This Composable is for my custom button it is a box and Text inside
+* and we have icon when you see icon will see tow type off icon in start and in top
+* and the top position and this is the default we use enum class is in the bottom in this file,
+* this composable take icon like icon and image.
 * */
 @Composable
 fun CustomButton(
@@ -45,9 +47,13 @@ fun CustomButton(
     textColor: Color = white_normal,
     textSize: Int = 14,
     icon: Int? = null,
+    iconSize: Int = 24,
     iconPosition: IconPosition = IconPosition.TOP,
+    iconColor: Color? = null,
     borderColor: Color = Color.Transparent,
     borderRadios: Int = 4,
+    borderThinks: Int = 2,
+    iconEnd: Int? = null,
     padding: PaddingValues = PaddingValues(16.dp),
     onClick: () -> Unit,
 ) {
@@ -55,7 +61,7 @@ fun CustomButton(
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
-            .border(2.dp, borderColor, RoundedCornerShape(borderRadios.dp))
+            .border(borderThinks.dp, borderColor, RoundedCornerShape(borderRadios.dp))
             .background(background, RoundedCornerShape(borderRadios.dp))
             .clickable(onClick = onClick)
             .padding(padding)
@@ -65,12 +71,20 @@ fun CustomButton(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                if (icon != null) Icon(
-                    modifier = Modifier.size(24.dp),
-                    painter = painterResource(icon),
-                    contentDescription = null,
-                    tint = textColor
-                )
+                if (icon != null)
+                    if (iconColor == null)
+                        Image(
+                            modifier = Modifier.size(iconSize.dp),
+                            painter = painterResource(icon),
+                            contentDescription = "logo btn",
+                        )
+                    else
+                        Icon(
+                            modifier = Modifier.size(iconSize.dp),
+                            painter = painterResource(icon),
+                            contentDescription = "logo btn",
+                            tint = iconColor
+                        )
                 Text(
                     text = label,
                     style = TextStyle(
@@ -86,12 +100,20 @@ fun CustomButton(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                if (icon != null) Icon(
-                    modifier = Modifier.size(24.dp),
-                    painter = painterResource(icon),
-                    contentDescription = null,
-                    tint = textColor
-                )
+                if (icon != null)
+                    if (iconColor == null)
+                        Image(
+                            modifier = Modifier.size(iconSize.dp),
+                            painter = painterResource(icon),
+                            contentDescription = "logo btn",
+                        )
+                    else
+                        Icon(
+                            modifier = Modifier.size(iconSize.dp),
+                            painter = painterResource(icon),
+                            contentDescription = "logo btn",
+                            tint = iconColor
+                        )
                 Text(
                     text = label,
                     style = TextStyle(
@@ -112,11 +134,14 @@ enum class IconPosition { TOP, START }
 @Composable
 fun PreviewCustomButton() {
     CustomButton(
-        label = "Ajouter 1 au panier | 14.65\$",
-        icon = R.drawable.delete,
-        background = red_normal.copy(alpha = .8f),
-        borderColor = red_dark,
-        textColor = white_normal
+        modifier = Modifier.fillMaxWidth(),
+        label = stringResource(R.string.login_btn_google),
+        icon = R.drawable.google_icon,
+        iconSize = 18,
+        iconPosition = IconPosition.START,
+        borderColor = grey_normal,
+        borderRadios = 18,
+        borderThinks = 1
     ) { }
 
 }

@@ -7,12 +7,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,7 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -32,35 +29,35 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
+import com.hbb20.CountryCodePicker
 import com.mokhtarihadjmohamed.thetag.R
 import com.mokhtarihadjmohamed.thetag.ui.theme.black_normal
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_dark
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light_active
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
-/*
-* This Composable is Custom text field is user in multiple on like search normal textfield
-* is tack as input icon and icon end evey icon can be change from input
-* and had label and activate just when text is here
-* */
+/**
+ * This Composable is phone number text field it have country selector and text field to enter the
+ * number.
+ */
+
 
 @Composable
-fun CustomTextField(
+fun CustomPhoneNumber(
     modifier: Modifier = Modifier,
     value: String,
     onValueChange: (String) -> Unit,
     textColor: Color = black_normal,
     placeholder: String = "Enter text",
     placeholderColor: Color = grey_dark,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     label: String? = null,
     labelBackground: Color = black_normal,
     labelColor: Color = white_normal,
-    icon: Int? = null,
-    endIcon: Int? = null,
     textAlign: TextAlign = TextAlign.Start,
+    onCodeSelected: (String) -> Unit
 ) {
-    Box() {
+    Box {
         Box(
             modifier = modifier,
         ) {
@@ -69,20 +66,16 @@ fun CustomTextField(
                 verticalAlignment = Alignment.CenterVertically
             )
             {
-                if (icon != null)
-                    Icon(
-                        painter = painterResource(icon),
-                        contentDescription = "card icon",
-                        modifier = Modifier
-                            .size(21.dp),
-                        tint = grey_dark
-                    )
+                CountryCodeDropdown(
+                    onCodeSelected = onCodeSelected,
+                    textColor = textColor
+                )
                 BasicTextField(
                     modifier = Modifier.weight(1f),
                     value = value,
                     onValueChange = onValueChange,
                     singleLine = true,
-                    keyboardOptions = keyboardOptions,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                     textStyle = TextStyle(
                         fontFamily = FontFamily(Font(R.font.inter_medium)),
                         fontSize = 14.sp,
@@ -102,23 +95,16 @@ fun CustomTextField(
                         innerTextField()
                     }
                 )
-                if (endIcon != null)
-                    Icon(
-                        painter = painterResource(endIcon),
-                        contentDescription = "card icon",
-                        modifier = Modifier
-                            .size(21.dp),
-                        tint = grey_dark
-                    )
+
             }
         }
 
         if (label != null) {
             Box(
                 modifier = Modifier
-                    .padding(start = 16.dp)       // position over left edge
-                    .offset(y = (-6).dp)          // lift above border line
-                    .background(labelBackground)     // hide border behind text
+                    .padding(start = 16.dp)
+                    .offset(y = (-6).dp)
+                    .background(labelBackground)
             ) {
                 Text(
                     text = label,
@@ -127,19 +113,52 @@ fun CustomTextField(
                         color = labelColor,
                         fontWeight = FontWeight.Medium,
                     ),
-                    modifier = Modifier.padding(horizontal = 4.dp) // spacing inside cut-out
+                    modifier = Modifier.padding(horizontal = 4.dp)
                 )
             }
         }
     }
 }
 
+@Composable
+fun CountryCodeDropdown(
+    modifier: Modifier = Modifier,
+    onCodeSelected: (String) -> Unit,
+    textColor: Color
+) {
+    var selectedCode by remember { mutableStateOf("+1") }
+
+    AndroidView(
+        modifier = modifier,
+        factory = { context ->
+            CountryCodePicker(context).apply {
+                post {
+                    showFlag(true)
+                    showFullName(false)
+                    showNameCode(false)
+
+                    setDefaultCountryUsingNameCode("US")
+                    resetToDefaultCountry()
+
+                    setContentColor(textColor.toArgb())
+                    setTextSize(32)
+
+                    setOnCountryChangeListener {
+                        selectedCode = selectedCountryCodeWithPlus
+                        onCodeSelected(selectedCode)
+                    }
+                }
+            }
+        }
+    )
+}
+
 
 @Preview(showBackground = true)
 @Composable
-fun CustomTextFieldPreview() {
+fun CustomPhoneNumberPreview() {
     var email by remember { mutableStateOf("") }
-    CustomTextField(
+    CustomPhoneNumber(
         modifier = Modifier
             .border(
                 1.dp, grey_light_active, RoundedCornerShape(8.dp)
@@ -149,7 +168,9 @@ fun CustomTextFieldPreview() {
         onValueChange = {
             email = it
         },
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         placeholder = "exemple@gmail.com",
+        onCodeSelected = { one ->
+
+        }
     )
 }

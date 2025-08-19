@@ -35,11 +35,13 @@ import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 * This Composable is Notification icon with badge this is tack
 * enter icon and show badge if thar are notification
 * */
+
 @Composable
 fun NotificationIconWithBadge(
     onClick: () -> Unit,
     hasNotification: Boolean,
     icon: Painter,
+    iconColor: Color = grey_dark,
     contentDescription: String? = null,
     number: Int = 0
 ) {
@@ -57,7 +59,7 @@ fun NotificationIconWithBadge(
             modifier = Modifier
                 .size(24.dp)
                 .background(white_normal, CircleShape),
-            tint = grey_dark
+            tint = iconColor
         )
 
         if (hasNotification) {

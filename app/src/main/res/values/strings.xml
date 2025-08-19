@@ -29,4 +29,32 @@
         <item>Apple Pay</item>
     </string-array>
 
+    // TODO LogIn Screen
+    <string name="title_logIn">Se connecter</string>
+    <string name="des_logIn">Connectez-vous à votre compte</string>
+    <string name="login_btn">Suivant</string>
+    <string name="hrz_text">Or</string>
+    <string name="login_btn_apple">Continue with Apple</string>
+    <string name="login_btn_google">Continue with Google</string>
+    <string name="login_create_account_user_des">Vous n’avez pas encore de compte ?</string>
+    <string name="login_create_account_user">Créez un compte maintenant</string>
+    <string name="login_create_account_waiter_des">je suis un serveur</string>
+    <string name="login_create_account_waiter">Créez un compte maintenant</string>
+    <string name="login_poli">En continuant, j\'accepte la Politique de Confidentialité et les Conditions Générales d\'Utilisation</string>
+    <string name="register_title">Creer un compte</string>
+    <string name="register_dec">Assurez-vous qu’il corresponde exactement à votre document officiel</string>
+    <string name="nameAuth">Nom</string>
+    <string name="familyNameAuth">Prenom</string>
+    <string name="passwordAuth">Mot de passe</string>
+    <string name="confirpasswordAuth">Confirmer mot de passe</string>
+    <string name="phoneNumber_title">Entrez votre numéro de téléphone</string>
+    <string name="phoneNumber_des">Nous utilisons votre numéro de mobile pour identifier votre compte de manière sécurisée.</string>
+    <string name="otp_title">Entrez le code que nous vous avons envoyé par SMS</string>
+    <string name="otp_dec">Nous avons envoyé un SMS au numéro</string>
+    <string name="otp_info">Votre code à 6 chiffres est en route. L\'arrivée peut parfois prendre quelques instants.</string>
+    <string name="otp_sendCodeAgain">Renvoyer le code</string>
+    <string name="otp_phonenumber_you_dont_have">Vous n’avez pas accès à votre numéro ?</string>
+    <string name="otp_other_way">Pas de souci !</string>
+    <string name="otp_byemail">Cliquez ici pour recevoir le code par e-mail.</string>
+
 </resources>

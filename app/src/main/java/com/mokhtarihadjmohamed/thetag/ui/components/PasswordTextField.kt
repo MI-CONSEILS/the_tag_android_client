@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -28,6 +29,8 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -38,28 +41,32 @@ import com.mokhtarihadjmohamed.thetag.ui.theme.grey_dark
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light_active
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
-/*
-* This Composable is Custom text field is user in multiple on like search normal textfield
-* is tack as input icon and icon end evey icon can be change from input
-* and had label and activate just when text is here
-* */
+/**
+ * This Composable is just password text field if just have show and hide password functionality
+ * the normal text field.
+ * */
 
 @Composable
-fun CustomTextField(
+fun PasswordTextField(
     modifier: Modifier = Modifier,
     value: String,
     onValueChange: (String) -> Unit,
     textColor: Color = black_normal,
     placeholder: String = "Enter text",
     placeholderColor: Color = grey_dark,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     label: String? = null,
     labelBackground: Color = black_normal,
     labelColor: Color = white_normal,
     icon: Int? = null,
-    endIcon: Int? = null,
     textAlign: TextAlign = TextAlign.Start,
 ) {
+
+    var hide by remember {
+        mutableStateOf(
+            true
+        )
+    }
+
     Box() {
         Box(
             modifier = modifier,
@@ -82,7 +89,9 @@ fun CustomTextField(
                     value = value,
                     onValueChange = onValueChange,
                     singleLine = true,
-                    keyboardOptions = keyboardOptions,
+                    keyboardOptions =
+                        KeyboardOptions(keyboardType = KeyboardType.Password),
+                    visualTransformation = if (hide) PasswordVisualTransformation() else VisualTransformation.None,
                     textStyle = TextStyle(
                         fontFamily = FontFamily(Font(R.font.inter_medium)),
                         fontSize = 14.sp,
@@ -102,23 +111,30 @@ fun CustomTextField(
                         innerTextField()
                     }
                 )
-                if (endIcon != null)
-                    Icon(
-                        painter = painterResource(endIcon),
-                        contentDescription = "card icon",
-                        modifier = Modifier
-                            .size(21.dp),
-                        tint = grey_dark
-                    )
+                CustomIconButton(
+                    paddingValues = PaddingValues(0.dp),
+                    icon = if (hide)
+                        R.drawable.eye
+                    else
+                        R.drawable.eye_crossed,
+                    borderColor = Color.Transparent,
+                    iconColor = textColor
+                ) {
+                    if (hide)
+                        hide = false
+                    else
+                        hide = true
+                }
+
             }
         }
 
         if (label != null) {
             Box(
                 modifier = Modifier
-                    .padding(start = 16.dp)       // position over left edge
-                    .offset(y = (-6).dp)          // lift above border line
-                    .background(labelBackground)     // hide border behind text
+                    .padding(start = 16.dp)
+                    .offset(y = (-6).dp)
+                    .background(labelBackground)
             ) {
                 Text(
                     text = label,
@@ -127,7 +143,7 @@ fun CustomTextField(
                         color = labelColor,
                         fontWeight = FontWeight.Medium,
                     ),
-                    modifier = Modifier.padding(horizontal = 4.dp) // spacing inside cut-out
+                    modifier = Modifier.padding(horizontal = 4.dp)
                 )
             }
         }
@@ -137,9 +153,9 @@ fun CustomTextField(
 
 @Preview(showBackground = true)
 @Composable
-fun CustomTextFieldPreview() {
+fun CustomTextFieldPassPreview() {
     var email by remember { mutableStateOf("") }
-    CustomTextField(
+    PasswordTextField(
         modifier = Modifier
             .border(
                 1.dp, grey_light_active, RoundedCornerShape(8.dp)
@@ -149,7 +165,6 @@ fun CustomTextFieldPreview() {
         onValueChange = {
             email = it
         },
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         placeholder = "exemple@gmail.com",
     )
 }
