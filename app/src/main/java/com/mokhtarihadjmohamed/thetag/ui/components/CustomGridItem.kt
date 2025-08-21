@@ -27,12 +27,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
 import com.mokhtarihadjmohamed.thetag.R
-import com.mokhtarihadjmohamed.thetag.models.Product
-import com.mokhtarihadjmohamed.thetag.ui.screens.PaymentScreen
+import com.mokhtarihadjmohamed.thetag.data.remote.entities.Product
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light
-import com.mokhtarihadjmohamed.thetag.ui.theme.grey_normal
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 /*

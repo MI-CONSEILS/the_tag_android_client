@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mokhtarihadjmohamed.thetag.R
-import com.mokhtarihadjmohamed.thetag.models.Product
+import com.mokhtarihadjmohamed.thetag.data.remote.entities.Product
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomButton
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomGridItem
 import com.mokhtarihadjmohamed.thetag.ui.components.TopBar

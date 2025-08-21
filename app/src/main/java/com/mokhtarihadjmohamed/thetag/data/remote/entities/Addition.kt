@@ -1,4 +1,4 @@
-package com.mokhtarihadjmohamed.thetag.models
+package com.mokhtarihadjmohamed.thetag.data.remote.entities
 
 
 /*

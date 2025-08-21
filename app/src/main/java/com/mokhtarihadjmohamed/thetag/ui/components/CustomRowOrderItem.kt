@@ -26,7 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mokhtarihadjmohamed.thetag.R
-import com.mokhtarihadjmohamed.thetag.models.Order
+import com.mokhtarihadjmohamed.thetag.data.remote.entities.Order
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 

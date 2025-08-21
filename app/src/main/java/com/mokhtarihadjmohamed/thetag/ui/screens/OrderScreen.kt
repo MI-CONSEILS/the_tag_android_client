@@ -27,9 +27,9 @@ import com.mokhtarihadjmohamed.thetag.R
 import com.mokhtarihadjmohamed.thetag.ui.components.BottomBar
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomTextField
 import com.mokhtarihadjmohamed.thetag.ui.components.TopBar
-import com.mokhtarihadjmohamed.thetag.models.Notification
-import com.mokhtarihadjmohamed.thetag.models.Order
-import com.mokhtarihadjmohamed.thetag.models.Product
+import com.mokhtarihadjmohamed.thetag.data.remote.entities.Notification
+import com.mokhtarihadjmohamed.thetag.data.remote.entities.Order
+import com.mokhtarihadjmohamed.thetag.data.remote.entities.Product
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomRowOrderItem
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 

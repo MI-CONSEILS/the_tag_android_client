@@ -1,5 +1,6 @@
-package com.mokhtarihadjmohamed.thetag.models
+package com.mokhtarihadjmohamed.thetag.data.remote.entities
 
+import android.Manifest
 import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -57,7 +58,7 @@ class Notification(
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
             ContextCompat.checkSelfPermission(
                 context,
-                android.Manifest.permission.POST_NOTIFICATIONS
+                Manifest.permission.POST_NOTIFICATIONS
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             NotificationManagerCompat.from(context).notify(1001, builder.build())
@@ -72,14 +73,14 @@ class Notification(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(
                     context,
-                    android.Manifest.permission.POST_NOTIFICATIONS
+                    Manifest.permission.POST_NOTIFICATIONS
                 )
                 != PackageManager.PERMISSION_GRANTED
             ) {
                 if (activity != null) {
                     ActivityCompat.requestPermissions(
                         activity,
-                        arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
+                        arrayOf(Manifest.permission.POST_NOTIFICATIONS),
                         1000
                     )
                 }

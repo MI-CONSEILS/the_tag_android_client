@@ -17,14 +17,12 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -56,12 +54,10 @@ import com.mokhtarihadjmohamed.thetag.R
 import com.mokhtarihadjmohamed.thetag.ui.components.BottomBar
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomGridItem
 import com.mokhtarihadjmohamed.thetag.ui.components.TopBar
-import com.mokhtarihadjmohamed.thetag.models.Product
+import com.mokhtarihadjmohamed.thetag.data.remote.entities.Product
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomizableSearchBar
 import com.mokhtarihadjmohamed.thetag.ui.components.MenuItem
-import com.mokhtarihadjmohamed.thetag.ui.components.OpinionDialog
 import com.mokhtarihadjmohamed.thetag.ui.components.OrderReadyDialog
-import com.mokhtarihadjmohamed.thetag.ui.components.OrderReceivedDialog
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_dark
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 

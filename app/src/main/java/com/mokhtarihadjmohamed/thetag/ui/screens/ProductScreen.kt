@@ -1,7 +1,6 @@
 package com.mokhtarihadjmohamed.thetag.ui.screens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,11 +9,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,7 +22,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -40,17 +36,15 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mokhtarihadjmohamed.thetag.R
-import com.mokhtarihadjmohamed.thetag.models.Addition
-import com.mokhtarihadjmohamed.thetag.models.Product
+import com.mokhtarihadjmohamed.thetag.data.remote.entities.Addition
+import com.mokhtarihadjmohamed.thetag.data.remote.entities.Product
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomButton
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomIconButton
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomRadioButton
 import com.mokhtarihadjmohamed.thetag.ui.components.MenuItem
 import com.mokhtarihadjmohamed.thetag.ui.theme.black_normal
-import com.mokhtarihadjmohamed.thetag.ui.theme.grey_dark
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light_active
-import com.mokhtarihadjmohamed.thetag.ui.theme.grey_normal
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 /*
