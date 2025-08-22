@@ -15,6 +15,7 @@ import com.mokhtarihadjmohamed.thetag.ui.screens.AdditionProductScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.BasketScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.HomeScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.LogInScreen
+import com.mokhtarihadjmohamed.thetag.ui.screens.NfcScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.OnBoarding
 import com.mokhtarihadjmohamed.thetag.ui.screens.OrderScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.OrderType
@@ -23,6 +24,7 @@ import com.mokhtarihadjmohamed.thetag.ui.screens.PaymentScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.PhoneNumberScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.ProductScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.RegisterScreen
+import com.mokhtarihadjmohamed.thetag.ui.screens.SearchEstablishmentScreen
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
 /*
@@ -53,7 +55,7 @@ fun NavigationComposable() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "LogInScreen",
+            startDestination = "NfcScreen",
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("OnBoarding") { OnBoarding(navController) }
@@ -68,6 +70,8 @@ fun NavigationComposable() {
             composable("BasketScreen") { BasketScreen(navController) }
             composable("AdditionProductScreen") { AdditionProductScreen(navController) }
             composable("PaymentScreen") { PaymentScreen(navController) }
+            composable("NfcScreen") { NfcScreen(navController) }
+            composable("SearchEstablishmentScreen") { SearchEstablishmentScreen(navController) }
         }
     }
 }

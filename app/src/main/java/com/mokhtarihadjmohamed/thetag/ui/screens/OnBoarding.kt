@@ -1,6 +1,9 @@
 package com.mokhtarihadjmohamed.thetag.ui.screens
 
+import android.media.browse.MediaBrowser
+import android.net.Uri
 import android.util.Log
+import androidx.annotation.OptIn
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
@@ -18,12 +21,18 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -34,6 +43,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.media3.common.MediaItem
+import androidx.media3.exoplayer.ExoPlayer
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mokhtarihadjmohamed.thetag.R
@@ -44,16 +56,23 @@ import com.mokhtarihadjmohamed.thetag.ui.theme.grey_dark
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light_active
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 import kotlinx.coroutines.launch
+import androidx.core.net.toUri
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.ui.PlayerView
+import com.mokhtarihadjmohamed.thetag.ui.components.CustomVideoPlayer
 
 
 /*
 * This is for on boarding it have pager and box to
 * show the image and when user scroll image change.
 * */
+@OptIn(UnstableApi::class)
 @Composable
 fun OnBoarding(navController: NavController) {
     val pagerState = rememberPagerState(pageCount = { 4 })
     val coroutineScope = rememberCoroutineScope()
+    val context = LocalContext.current
+    var videoRes by remember { mutableStateOf(0) }
 
     Scaffold { innerPadding ->
         Box(
@@ -70,11 +89,16 @@ fun OnBoarding(navController: NavController) {
                     })
                 },
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.image_page01),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize()
+
+            CustomVideoPlayer(
+                modifier = Modifier.fillMaxSize(),
+                videoRes = when (pagerState.currentPage) {
+                    0 -> R.raw.on_boarding_1
+                    1 -> R.raw.on_boarding_2
+                    2 -> R.raw.on_boarding_3
+                    3 -> R.raw.on_boarding_1
+                    else -> R.raw.on_boarding_1
+                }
             )
 
             Column(

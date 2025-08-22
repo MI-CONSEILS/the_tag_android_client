@@ -56,5 +56,12 @@
     <string name="otp_phonenumber_you_dont_have">Vous n’avez pas accès à votre numéro ?</string>
     <string name="otp_other_way">Pas de souci !</string>
     <string name="otp_byemail">Cliquez ici pour recevoir le code par e-mail.</string>
+    <string name="nfcScreen_text_top_01">Touch the tag</string>
+    <string name="nfcScreen_text_top_02">Chercher une établissement</string>
+    <string name="nfcScreen_title">Approchez votre téléphone du tag NFC</string>
+    <string name="nfcScreen_dec">Assurez-vous que le NFC est activé dans vos paramètres et réessayez.</string>
+    <string name="nfcScreen_btn">Paramètres de compte</string>
+    <string name="searchEstablishment_title">Plus besoin d’attendre, commandez à l’avance</string>
+    <string name="searchEstablishment_sub_titll">L\'historique de vos recherches</string>
 
 </resources>
