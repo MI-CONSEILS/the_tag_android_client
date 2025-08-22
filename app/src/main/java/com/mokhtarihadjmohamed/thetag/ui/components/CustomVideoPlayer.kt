@@ -22,8 +22,9 @@ import androidx.media3.ui.PlayerView
 @OptIn(UnstableApi::class)
 @Composable
 fun CustomVideoPlayer(
-    modifier: Modifier,
-    videoRes: Int
+    modifier: Modifier = Modifier,
+    videoRes: Int,
+    aspect: Int = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
 ) {
     val context = LocalContext.current
 
@@ -54,7 +55,7 @@ fun CustomVideoPlayer(
                 player = exoPlayer
                 useController = false
                 setShutterBackgroundColor(android.graphics.Color.TRANSPARENT)
-                resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
+                resizeMode = aspect
             }
         }
     )

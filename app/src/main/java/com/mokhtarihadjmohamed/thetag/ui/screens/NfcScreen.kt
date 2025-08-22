@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -27,10 +28,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.mokhtarihadjmohamed.thetag.R
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomButton
+import com.mokhtarihadjmohamed.thetag.ui.components.CustomVideoPlayer
 import com.mokhtarihadjmohamed.thetag.ui.components.IconPosition
 import com.mokhtarihadjmohamed.thetag.ui.theme.black_normal
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light_active
@@ -142,7 +145,11 @@ fun NfcScreen(navController: NavController) {
                 )
             )
 
-            Spacer(modifier = Modifier.weight(1f))
+            CustomVideoPlayer(
+                modifier = Modifier.weight(1f),
+                videoRes = R.raw.nfc_loading,
+                aspect = AspectRatioFrameLayout.RESIZE_MODE_FIT
+            )
 
             CustomButton(
                 modifier = Modifier.fillMaxWidth(),
