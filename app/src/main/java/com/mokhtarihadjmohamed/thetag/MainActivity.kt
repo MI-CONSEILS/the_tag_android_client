@@ -11,10 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.mokhtarihadjmohamed.thetag.ui.screens.AccountSetting
 import com.mokhtarihadjmohamed.thetag.ui.screens.AdditionProductScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.BasketScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.HomeScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.LogInScreen
+import com.mokhtarihadjmohamed.thetag.ui.screens.MapScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.NfcScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.OnBoarding
 import com.mokhtarihadjmohamed.thetag.ui.screens.OrderScreen
@@ -55,7 +57,7 @@ fun NavigationComposable() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "NfcScreen",
+            startDestination = "AccountSetting",
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("OnBoarding") { OnBoarding(navController) }
@@ -72,6 +74,8 @@ fun NavigationComposable() {
             composable("PaymentScreen") { PaymentScreen(navController) }
             composable("NfcScreen") { NfcScreen(navController) }
             composable("SearchEstablishmentScreen") { SearchEstablishmentScreen(navController) }
+            composable("MapScreen") { MapScreen(navController) }
+            composable("AccountSetting") { AccountSetting(navController) }
         }
     }
 }

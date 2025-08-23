@@ -1,6 +1,7 @@
 package com.mokhtarihadjmohamed.thetag.ui.screens
 
 import android.widget.Space
+import androidx.annotation.OptIn
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,6 +29,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -40,6 +42,7 @@ import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light_active
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_normal
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
+@OptIn(UnstableApi::class)
 @Composable
 fun NfcScreen(navController: NavController) {
 
@@ -158,7 +161,9 @@ fun NfcScreen(navController: NavController) {
                 icon = R.drawable.setting,
                 borderColor = grey_normal,
                 borderRadios = 12,
-            ) { }
+            ) {
+                navController.navigate("AccountSetting")
+            }
 
         }
     }
@@ -167,5 +172,5 @@ fun NfcScreen(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 fun NfcScreenPreview() {
-    NfcScreen(rememberNavController())
+//    NfcScreen(rememberNavController())
 }

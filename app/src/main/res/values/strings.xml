@@ -63,5 +63,8 @@
     <string name="nfcScreen_btn">Paramètres de compte</string>
     <string name="searchEstablishment_title">Plus besoin d’attendre, commandez à l’avance</string>
     <string name="searchEstablishment_sub_titll">L\'historique de vos recherches</string>
+    <string name="locationItem_btn">Aller vers le menu</string>
+    <string name="accountSetting_title">Parametre de compte</string>
+    <string name="accountSetting_logout">Se deconnecter</string>
 
 </resources>

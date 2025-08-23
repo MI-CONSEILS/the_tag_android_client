@@ -81,6 +81,8 @@ fun TopBar(
     modifier: Modifier = Modifier,
     title: String,
     iconColor: Color = black_normal,
+    textColor: Color = black_normal,
+    textSize: Int = 24,
     onclick: () -> Unit,
 ) {
     Row(
@@ -101,9 +103,10 @@ fun TopBar(
             text = title,
             style = TextStyle(
                 fontFamily = FontFamily(Font(R.font.inter_medium)),
-                fontSize = 24.sp,
+                fontSize = textSize.sp,
                 fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                color = textColor
             )
         )
         Box(modifier = Modifier.size(24.dp))

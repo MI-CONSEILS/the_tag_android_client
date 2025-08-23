@@ -2,9 +2,12 @@ package com.mokhtarihadjmohamed.thetag.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -57,45 +60,147 @@ fun CustomTextField(
     labelBackground: Color = black_normal,
     labelColor: Color = white_normal,
     icon: Int? = null,
+    iconColor: Color = grey_dark,
     endIcon: Int? = null,
     textAlign: TextAlign = TextAlign.Start,
 ) {
-    Box() {
+
+    Box(
+        modifier = modifier,
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        )
+        {
+            if (icon != null)
+                Icon(
+                    painter = painterResource(icon),
+                    contentDescription = "card icon",
+                    modifier = Modifier
+                        .size(21.dp),
+                    tint = iconColor
+                )
+            BasicTextField(
+                modifier = Modifier.weight(1f),
+                value = value,
+                onValueChange = onValueChange,
+                singleLine = true,
+                keyboardOptions = keyboardOptions,
+                textStyle = TextStyle(
+                    fontFamily = FontFamily(Font(R.font.inter_medium)),
+                    fontSize = 14.sp,
+                    color = textColor,
+                    textAlign = textAlign
+                ),
+                decorationBox = { innerTextField ->
+                    if (value.isEmpty()) {
+                        Text(
+                            text = placeholder, style = TextStyle(
+                                fontFamily = FontFamily(Font(R.font.inter_medium)),
+                                fontSize = 14.sp,
+                                color = placeholderColor,
+                            )
+                        )
+                    }
+                    innerTextField()
+                }
+            )
+            if (endIcon != null)
+                Icon(
+                    painter = painterResource(endIcon),
+                    contentDescription = "card icon",
+                    modifier = Modifier
+                        .size(21.dp),
+                    tint = iconColor
+                )
+        }
+    }
+
+    if (label != null) {
         Box(
-            modifier = modifier,
+            modifier = Modifier
+                .padding(start = 16.dp)       // position over left edge
+                .offset(y = (-6).dp)          // lift above border line
+                .background(labelBackground)     // hide border behind text
+        ) {
+            Text(
+                text = label,
+                style = TextStyle(
+                    fontSize = 12.sp,
+                    color = labelColor,
+                    fontWeight = FontWeight.Medium,
+                ),
+                modifier = Modifier.padding(horizontal = 4.dp) // spacing inside cut-out
+            )
+        }
+    }
+}
+
+@Composable
+fun CustomTextField(
+    modifier: Modifier = Modifier,
+    title: String,
+    value: String,
+    onValueChange: (String) -> Unit,
+    titleSize: Int = 16,
+    textSize: Int = 16,
+    placeholder: String = "Enter text",
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    textAlign: TextAlign = TextAlign.Start,
+    icon: Int? = null,
+    iconColor: Color = grey_dark,
+    endIcon: Int? = null,
+    enabled: Boolean = true,
+    onClickEndIcon: () -> Unit = {},
+) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Text(
+            text = title, style = TextStyle(
+                fontFamily = FontFamily(Font(R.font.inter_medium)),
+                fontSize = titleSize.sp,
+                color = Color.White,
+            )
+        )
+        Box(
+            modifier = modifier
         ) {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 verticalAlignment = Alignment.CenterVertically
-            )
-            {
+            ) {
+
                 if (icon != null)
                     Icon(
                         painter = painterResource(icon),
                         contentDescription = "card icon",
                         modifier = Modifier
                             .size(21.dp),
-                        tint = grey_dark
+                        tint = iconColor
                     )
                 BasicTextField(
                     modifier = Modifier.weight(1f),
                     value = value,
                     onValueChange = onValueChange,
+                    enabled = enabled,
                     singleLine = true,
                     keyboardOptions = keyboardOptions,
                     textStyle = TextStyle(
                         fontFamily = FontFamily(Font(R.font.inter_medium)),
-                        fontSize = 14.sp,
-                        color = textColor,
+                        fontSize = textSize.sp,
+                        color = Color.White,
                         textAlign = textAlign
                     ),
                     decorationBox = { innerTextField ->
                         if (value.isEmpty()) {
                             Text(
                                 text = placeholder, style = TextStyle(
-                                    fontFamily = FontFamily(Font(R.font.inter_medium)),
-                                    fontSize = 14.sp,
-                                    color = placeholderColor,
+                                    fontFamily = FontFamily(Font(R.font.inter_bold)),
+                                    fontSize = textSize.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color(0xffABA8AC),
                                 )
                             )
                         }
@@ -107,28 +212,12 @@ fun CustomTextField(
                         painter = painterResource(endIcon),
                         contentDescription = "card icon",
                         modifier = Modifier
-                            .size(21.dp),
-                        tint = grey_dark
+                            .size(21.dp)
+                            .clickable(
+                                onClick = onClickEndIcon
+                            ),
+                        tint = iconColor,
                     )
-            }
-        }
-
-        if (label != null) {
-            Box(
-                modifier = Modifier
-                    .padding(start = 16.dp)       // position over left edge
-                    .offset(y = (-6).dp)          // lift above border line
-                    .background(labelBackground)     // hide border behind text
-            ) {
-                Text(
-                    text = label,
-                    style = TextStyle(
-                        fontSize = 12.sp,
-                        color = labelColor,
-                        fontWeight = FontWeight.Medium,
-                    ),
-                    modifier = Modifier.padding(horizontal = 4.dp) // spacing inside cut-out
-                )
             }
         }
     }
