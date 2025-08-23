@@ -16,6 +16,7 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -64,11 +65,9 @@ fun CustomTextField(
     endIcon: Int? = null,
     textAlign: TextAlign = TextAlign.Start,
 ) {
-
-    Box(
-        modifier = modifier,
-    ) {
+    Box {
         Row(
+            modifier = modifier,
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalAlignment = Alignment.CenterVertically
         )
@@ -115,26 +114,27 @@ fun CustomTextField(
                     tint = iconColor
                 )
         }
-    }
-
-    if (label != null) {
-        Box(
-            modifier = Modifier
-                .padding(start = 16.dp)       // position over left edge
-                .offset(y = (-6).dp)          // lift above border line
-                .background(labelBackground)     // hide border behind text
-        ) {
-            Text(
-                text = label,
-                style = TextStyle(
-                    fontSize = 12.sp,
-                    color = labelColor,
-                    fontWeight = FontWeight.Medium,
-                ),
-                modifier = Modifier.padding(horizontal = 4.dp) // spacing inside cut-out
-            )
+        if (label != null) {
+            Box(
+                modifier = Modifier
+                    .padding(start = 16.dp)       // position over left edge
+                    .offset(y = (-6).dp, x = 0.dp)          // lift above border line
+                    .background(labelBackground)     // hide border behind text
+            ) {
+                Text(
+                    text = label,
+                    style = TextStyle(
+                        fontSize = 12.sp,
+                        color = labelColor,
+                        fontWeight = FontWeight.Medium,
+                    ),
+                    modifier = Modifier.padding(horizontal = 4.dp) // spacing inside cut-out
+                )
+            }
         }
     }
+
+
 }
 
 @Composable
@@ -234,6 +234,7 @@ fun CustomTextFieldPreview() {
                 1.dp, grey_light_active, RoundedCornerShape(8.dp)
             )
             .padding(horizontal = 12.dp, vertical = 14.dp),
+        label = "email",
         value = email,
         onValueChange = {
             email = it

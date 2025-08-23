@@ -66,5 +66,14 @@
     <string name="locationItem_btn">Aller vers le menu</string>
     <string name="accountSetting_title">Parametre de compte</string>
     <string name="accountSetting_logout">Se deconnecter</string>
+    <string name="emailAuth">Adresse e-mail</string>
+    <string name="phoneNumberAuth">Numéro de téléphone</string>
+    <string name="adresseAuth">Adresse postal</string>
+    <string name="accountEdit_save">Enregistrer</string>
+    <string name="accountEdit_cancel">Annuler</string>
+    <string name="restaurantHomeScreen_hello">Bienvenue</string>
+    <string name="restaurantPlusInformation_title">Plus d’information</string>
+    <string name="restaurantPlusInformation_btn_01">Voir les horaires d\'ouverture</string>
+    <string name="restaurantPlusInformation_btn_02">Quitter le restaurant</string>
 
 </resources>

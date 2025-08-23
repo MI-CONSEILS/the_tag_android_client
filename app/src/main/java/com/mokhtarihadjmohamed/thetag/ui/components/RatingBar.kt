@@ -1,5 +1,6 @@
 package com.mokhtarihadjmohamed.thetag.ui.components
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -18,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mokhtarihadjmohamed.thetag.R
+import com.mokhtarihadjmohamed.thetag.ui.theme.black_normal
 import com.mokhtarihadjmohamed.thetag.ui.theme.grey_light_active
 import com.mokhtarihadjmohamed.thetag.ui.theme.yellow_normal
 
@@ -39,7 +41,7 @@ fun RatingBar(
                 tint = if (i <= rating) yellow_normal else grey_light_active,
                 modifier = Modifier
                     .size(32.dp)
-                    .clickable { onRatingChanged(i) }
+                    .clickable { onRatingChanged(i) },
             )
         }
     }

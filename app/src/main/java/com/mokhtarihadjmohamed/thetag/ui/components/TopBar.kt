@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
@@ -12,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -86,9 +88,9 @@ fun TopBar(
     onclick: () -> Unit,
 ) {
     Row(
-        modifier = modifier,
+        modifier = modifier.padding(vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
         CustomIconButton(
             icon = R.drawable.outline_arrow_back_24,
@@ -112,3 +114,47 @@ fun TopBar(
         Box(modifier = Modifier.size(24.dp))
     }
 }
+
+@Composable
+fun TopBar(
+    modifier: Modifier = Modifier,
+    title: String,
+    iconColor: Color = black_normal,
+    textColor: Color = black_normal,
+    textSize: Int = 24,
+    image: Int = R.drawable.restaurant_logo,
+    onclick: () -> Unit,
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        CustomIconButton(
+            icon = R.drawable.outline_arrow_back_24,
+            borderWidth = 0,
+            borderColor = Color.Transparent,
+            iconSize = 24,
+            iconColor = iconColor,
+            onClick = onclick
+        )
+        Image(
+            modifier = Modifier.size(60.dp),
+            painter = painterResource(image),
+            contentDescription = "",
+            contentScale = ContentScale.Crop
+        )
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = title,
+            style = TextStyle(
+                fontFamily = FontFamily(Font(R.font.inter_medium)),
+                fontSize = textSize.sp,
+                fontWeight = FontWeight.Bold,
+                color = textColor
+            )
+        )
+        Box(modifier = Modifier.size(24.dp))
+    }
+}
+

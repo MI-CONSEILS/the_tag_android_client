@@ -57,7 +57,7 @@ fun AccountSetting(navController: NavController) {
                         1.dp, grey_light_active, RoundedCornerShape(8.dp)
                     )
                     .padding(horizontal = 12.dp, vertical = 14.dp),
-                title = "Nom",
+                title = stringResource(R.string.nameAuth),
                 value = "Bennaceur",
                 onValueChange = {},
                 placeholder = "exemple@gmail.com",
@@ -75,7 +75,25 @@ fun AccountSetting(navController: NavController) {
                         1.dp, grey_light_active, RoundedCornerShape(8.dp)
                     )
                     .padding(horizontal = 12.dp, vertical = 14.dp),
-                title = "Prénom",
+                title = stringResource(R.string.familyNameAuth),
+                value = "Bennaceur",
+                onValueChange = {},
+                placeholder = stringResource(R.string.familyNameAuth),
+                endIcon = R.drawable.edit,
+                iconColor = grey_light_active,
+                textSize = 12,
+                enabled = false,
+                onClickEndIcon = {
+
+                }
+            )
+            CustomTextField(
+                modifier = Modifier
+                    .border(
+                        1.dp, grey_light_active, RoundedCornerShape(8.dp)
+                    )
+                    .padding(horizontal = 12.dp, vertical = 14.dp),
+                title = stringResource(R.string.emailAuth),
                 value = "Bennaceur",
                 onValueChange = {},
                 placeholder = "exemple@gmail.com",
@@ -93,28 +111,10 @@ fun AccountSetting(navController: NavController) {
                         1.dp, grey_light_active, RoundedCornerShape(8.dp)
                     )
                     .padding(horizontal = 12.dp, vertical = 14.dp),
-                title = "Adresse e-mail ",
-                value = "Bennaceur",
-                onValueChange = {},
-                placeholder = "exemple@gmail.com",
-                endIcon = R.drawable.edit,
-                iconColor = grey_light_active,
-                textSize = 12,
-                enabled = false,
-                onClickEndIcon = {
-
-                }
-            )
-            CustomTextField(
-                modifier = Modifier
-                    .border(
-                        1.dp, grey_light_active, RoundedCornerShape(8.dp)
-                    )
-                    .padding(horizontal = 12.dp, vertical = 14.dp),
-                title = "Numéro de téléphone ",
+                title = stringResource(R.string.phoneNumberAuth),
                 value = "0758247144",
                 onValueChange = {},
-                placeholder = "exemple@gmail.com",
+                placeholder = stringResource(R.string.phoneNumberAuth),
                 endIcon = R.drawable.edit,
                 iconColor = grey_light_active,
                 textSize = 12,
@@ -129,10 +129,10 @@ fun AccountSetting(navController: NavController) {
                         1.dp, grey_light_active, RoundedCornerShape(8.dp)
                     )
                     .padding(horizontal = 12.dp, vertical = 14.dp),
-                title = "Mot de passe",
+                title = stringResource(R.string.passwordAuth),
                 value = "*********",
                 onValueChange = {},
-                placeholder = "exemple@gmail.com",
+                placeholder = stringResource(R.string.passwordAuth),
                 endIcon = R.drawable.edit,
                 iconColor = grey_light_active,
                 textSize = 12,
@@ -147,10 +147,10 @@ fun AccountSetting(navController: NavController) {
                         1.dp, grey_light_active, RoundedCornerShape(8.dp)
                     )
                     .padding(horizontal = 12.dp, vertical = 14.dp),
-                title = "Adresse postal",
+                title = stringResource(R.string.adresseAuth),
                 value = "11bd victor wesrtyik 89472",
                 onValueChange = {},
-                placeholder = "exemple@gmail.com",
+                placeholder = stringResource(R.string.adresseAuth),
                 endIcon = R.drawable.edit,
                 iconColor = grey_light_active,
                 textSize = 12,
@@ -167,7 +167,7 @@ fun AccountSetting(navController: NavController) {
                 borderColor = grey_normal,
                 borderRadios = 12,
             ) {
-                navController.navigate("LogInScreen"){
+                navController.navigate("LogInScreen") {
                     popUpTo("AccountSetting") { inclusive = true }
                     launchSingleTop = true
                 }

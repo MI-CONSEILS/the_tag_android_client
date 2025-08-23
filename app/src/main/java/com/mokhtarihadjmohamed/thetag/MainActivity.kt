@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.mokhtarihadjmohamed.thetag.ui.screens.AccountEditInfo
 import com.mokhtarihadjmohamed.thetag.ui.screens.AccountSetting
 import com.mokhtarihadjmohamed.thetag.ui.screens.AdditionProductScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.BasketScreen
@@ -26,6 +27,9 @@ import com.mokhtarihadjmohamed.thetag.ui.screens.PaymentScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.PhoneNumberScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.ProductScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.RegisterScreen
+import com.mokhtarihadjmohamed.thetag.ui.screens.RestaurantChatScreen
+import com.mokhtarihadjmohamed.thetag.ui.screens.RestaurantHomeScreen
+import com.mokhtarihadjmohamed.thetag.ui.screens.RestaurantPlusInformation
 import com.mokhtarihadjmohamed.thetag.ui.screens.SearchEstablishmentScreen
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 
@@ -57,7 +61,7 @@ fun NavigationComposable() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "AccountSetting",
+            startDestination = "LogInScreen",
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("OnBoarding") { OnBoarding(navController) }
@@ -76,6 +80,10 @@ fun NavigationComposable() {
             composable("SearchEstablishmentScreen") { SearchEstablishmentScreen(navController) }
             composable("MapScreen") { MapScreen(navController) }
             composable("AccountSetting") { AccountSetting(navController) }
+            composable("AccountEditInfo") { AccountEditInfo(navController) }
+            composable("RestaurantHomeScreen") { RestaurantHomeScreen(navController) }
+            composable("RestaurantChatScreen") { RestaurantChatScreen(navController) }
+            composable("RestaurantPlusInformation") { RestaurantPlusInformation(navController) }
         }
     }
 }

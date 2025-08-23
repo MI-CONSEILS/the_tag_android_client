@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -25,6 +26,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -46,6 +48,7 @@ fun CustomButton(
     background: Color = black_normal,
     textColor: Color = white_normal,
     textSize: Int = 14,
+    textAlign: TextAlign = TextAlign.Center,
     icon: Int? = null,
     iconSize: Int = 24,
     iconPosition: IconPosition = IconPosition.TOP,
@@ -54,76 +57,103 @@ fun CustomButton(
     borderRadios: Int = 4,
     borderThinks: Int = 2,
     iconEnd: Int? = null,
+    rowCenter: Boolean = false,
     padding: PaddingValues = PaddingValues(16.dp),
+    horizontalArrangement: Arrangement.HorizontalOrVertical = Arrangement.spacedBy(8.dp),
+    verticalArrangement: Arrangement.HorizontalOrVertical = Arrangement.spacedBy(8.dp),
     onClick: () -> Unit,
 ) {
 
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier
-            .border(borderThinks.dp, borderColor, RoundedCornerShape(borderRadios.dp))
-            .background(background, RoundedCornerShape(borderRadios.dp))
-            .clickable(onClick = onClick)
-            .padding(padding)
-    ) {
-        if (iconPosition == IconPosition.TOP) {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                if (icon != null)
-                    if (iconColor == null)
-                        Image(
-                            modifier = Modifier.size(iconSize.dp),
-                            painter = painterResource(icon),
-                            contentDescription = "logo btn",
-                        )
-                    else
-                        Icon(
-                            modifier = Modifier.size(iconSize.dp),
-                            painter = painterResource(icon),
-                            contentDescription = "logo btn",
-                            tint = iconColor
-                        )
-                Text(
-                    text = label,
-                    style = TextStyle(
-                        fontFamily = FontFamily(Font(R.font.inter_medium)),
-                        fontSize = textSize.sp,
-                        fontWeight = FontWeight.ExtraBold,
-                        color = textColor
+
+    if (iconPosition == IconPosition.TOP) {
+        Column(
+            modifier
+                .clickable(onClick = onClick)
+                .border(borderThinks.dp, borderColor, RoundedCornerShape(borderRadios.dp))
+                .background(background, RoundedCornerShape(borderRadios.dp))
+                .padding(padding),
+            verticalArrangement = verticalArrangement,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            if (icon != null)
+                if (iconColor == null)
+                    Image(
+                        modifier = Modifier.size(iconSize.dp),
+                        painter = painterResource(icon),
+                        contentDescription = "logo btn",
                     )
-                )
-            }
-        } else {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                if (icon != null)
-                    if (iconColor == null)
-                        Image(
-                            modifier = Modifier.size(iconSize.dp),
-                            painter = painterResource(icon),
-                            contentDescription = "logo btn",
-                        )
-                    else
-                        Icon(
-                            modifier = Modifier.size(iconSize.dp),
-                            painter = painterResource(icon),
-                            contentDescription = "logo btn",
-                            tint = iconColor
-                        )
-                Text(
-                    text = label,
-                    style = TextStyle(
-                        fontFamily = FontFamily(Font(R.font.inter_medium)),
-                        fontSize = textSize.sp,
-                        fontWeight = FontWeight.ExtraBold,
-                        color = textColor
+                else
+                    Icon(
+                        modifier = Modifier.size(iconSize.dp),
+                        painter = painterResource(icon),
+                        contentDescription = "logo btn",
+                        tint = iconColor
                     )
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = label,
+                style = TextStyle(
+                    fontFamily = FontFamily(Font(R.font.inter_medium)),
+                    fontSize = textSize.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = textColor,
+                    textAlign = textAlign
                 )
-            }
+            )
+        }
+    } else {
+        Row(
+            modifier
+                .clickable(onClick = onClick)
+                .border(borderThinks.dp, borderColor, RoundedCornerShape(borderRadios.dp))
+                .background(background, RoundedCornerShape(borderRadios.dp))
+                .padding(padding),
+            horizontalArrangement = horizontalArrangement,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            if (rowCenter)
+                Spacer(modifier = Modifier.weight(1f))
+            if (icon != null)
+                if (iconColor == null)
+                    Image(
+                        modifier = Modifier.size(iconSize.dp),
+                        painter = painterResource(icon),
+                        contentDescription = "logo btn",
+                    )
+                else
+                    Icon(
+                        modifier = Modifier.size(iconSize.dp),
+                        painter = painterResource(icon),
+                        contentDescription = "logo btn",
+                        tint = iconColor
+                    )
+            Text(
+                modifier = Modifier.weight(4f),
+                text = label,
+                style = TextStyle(
+                    fontFamily = FontFamily(Font(R.font.inter_medium)),
+                    fontSize = textSize.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = textColor,
+                    textAlign = textAlign
+                )
+            )
+            if (iconEnd != null)
+                if (iconColor == null)
+                    Image(
+                        modifier = Modifier.size(iconSize.dp),
+                        painter = painterResource(iconEnd),
+                        contentDescription = "logo btn",
+                    )
+                else
+                    Icon(
+                        modifier = Modifier.size(iconSize.dp),
+                        painter = painterResource(iconEnd),
+                        contentDescription = "logo btn",
+                        tint = iconColor
+                    )
+            if (rowCenter)
+                Spacer(modifier = Modifier.weight(1f))
         }
     }
 }

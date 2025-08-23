@@ -9,9 +9,12 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -58,27 +61,33 @@ import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 fun LogInScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val scrollState = rememberScrollState()
 
 
     Scaffold(
         containerColor = black_normal,
         topBar = {
             TopBar(title = "", iconColor = white_normal) {
-                navController.popBackStack()
+                navController.navigate("OnBoarding") {
+                    popUpTo("LogInScreen") { inclusive = true }
+                    launchSingleTop = true
+                }
             }
         }
     ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .imePadding()
+                .verticalScroll(scrollState)
                 .padding(
                     top = innerPadding.calculateTopPadding() + 16.dp,
                     bottom = innerPadding.calculateBottomPadding() + 16.dp,
                     start = 16.dp,
                     end = 16.dp
                 ),
-            verticalArrangement = Arrangement.SpaceBetween,
-            horizontalAlignment = Alignment.CenterHorizontally
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+//            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
@@ -102,7 +111,9 @@ fun LogInScreen(navController: NavController) {
             CustomTextField(
                 modifier = Modifier
                     .border(
-                        1.dp, grey_light_active, RoundedCornerShape(8.dp)
+                        1.dp,
+                        grey_light_active,
+                        RoundedCornerShape(8.dp)
                     )
                     .padding(horizontal = 12.dp, vertical = 14.dp),
                 textColor = white_normal,
@@ -110,7 +121,6 @@ fun LogInScreen(navController: NavController) {
                 onValueChange = {
                     email = it
                 },
-
                 label = "email",
                 placeholder = "exemple@gmail.com",
             )
