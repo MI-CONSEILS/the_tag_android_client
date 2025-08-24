@@ -19,6 +19,13 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
+    packaging {
+        resources {
+            pickFirsts += "/META-INF/INDEX.LIST"
+            pickFirsts += "/META-INF/io.netty.versions.properties"
+        }
+    }
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -70,5 +77,14 @@ dependencies {
     implementation(libs.androidx.media3.ui)
     implementation(libs.androidx.media3.common)
 
+    // TODO Notification
+    implementation(libs.hivemq.mqtt.client)
+
+    // TODO API lib
+    implementation(libs.retrofit2.retrofit)
+    implementation(libs.retrofit2.converter.gson)
+
+    // TODO Datastore
+    implementation(libs.androidx.datastore.preferences)
 
 }

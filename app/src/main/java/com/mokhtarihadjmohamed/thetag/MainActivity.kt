@@ -1,6 +1,7 @@
 package com.mokhtarihadjmohamed.thetag
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -11,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.mokhtarihadjmohamed.thetag.data.datastore.SettingsDataStore
 import com.mokhtarihadjmohamed.thetag.ui.screens.AccountEditInfo
 import com.mokhtarihadjmohamed.thetag.ui.screens.AccountSetting
 import com.mokhtarihadjmohamed.thetag.ui.screens.AdditionProductScreen
@@ -35,6 +37,9 @@ import com.mokhtarihadjmohamed.thetag.ui.screens.RestaurantPlateScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.RestaurantPlusInformation
 import com.mokhtarihadjmohamed.thetag.ui.screens.SearchEstablishmentScreen
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /*
 * This is main activity, I'm always use one activity
@@ -47,24 +52,37 @@ import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
 * */
 
 class MainActivity : ComponentActivity() {
+    private lateinit var startScreen: String
+
+    override fun onStart() {
+        super.onStart()
+        val ds = SettingsDataStore(this)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            ds.jwtToken.collect { token ->
+                startScreen = if (token != null) "NfcScreen" else "OnBoarding"
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            NavigationComposable()
+            NavigationComposable(startScreen)
         }
     }
 }
 
 @Composable
-fun NavigationComposable() {
+fun NavigationComposable(startScreen: String) {
     val navController = rememberNavController()
     Scaffold(
         containerColor = white_normal
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "OnBoarding",
+            startDestination = startScreen,
             modifier = Modifier.padding(innerPadding)
         ) {
             // TODO Auth

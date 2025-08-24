@@ -1,5 +1,6 @@
 package com.mokhtarihadjmohamed.thetag.ui.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -19,6 +20,8 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -36,9 +40,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.mokhtarihadjmohamed.tagwatchproject.Viewmodels.AuthViewModel
 import com.mokhtarihadjmohamed.thetag.R
+import com.mokhtarihadjmohamed.thetag.data.datastore.SettingsDataStore
+import com.mokhtarihadjmohamed.thetag.data.remote.RetrofitInstance
+import com.mokhtarihadjmohamed.thetag.data.remote.entities.AuthResult
+import com.mokhtarihadjmohamed.thetag.data.repository.AuthRepository
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomButton
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomDivider
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomTextClick
@@ -62,6 +72,39 @@ fun LogInScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
+
+    val context = LocalContext.current
+    val dataStore = SettingsDataStore(context = context)
+
+    val repository = AuthRepository(
+        api = RetrofitInstance.apiService,
+        dataStore = dataStore,
+    )
+
+    val viewModel: AuthViewModel = viewModel(
+        factory = AuthViewModel.Factory(repository)
+    )
+    val authResult by viewModel.authResults.collectAsState(initial = null)
+
+    LaunchedEffect(authResult) {
+        when (authResult) {
+            is AuthResult.Authorized -> {
+                navController.navigate("NfcScreen") {
+                    popUpTo(navController.graph.startDestinationId) { inclusive = true }
+                }
+            }
+
+            is AuthResult.Unauthorized -> {
+                Toast.makeText(context, "You're not authorized", Toast.LENGTH_LONG).show()
+            }
+
+            is AuthResult.UnknownError -> {
+                Toast.makeText(context, "An unknown error occurred", Toast.LENGTH_LONG).show()
+            }
+
+            else -> Unit
+        }
+    }
 
 
     Scaffold(
@@ -87,7 +130,6 @@ fun LogInScreen(navController: NavController) {
                     end = 16.dp
                 ),
             verticalArrangement = Arrangement.spacedBy(16.dp),
-//            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
@@ -142,7 +184,12 @@ fun LogInScreen(navController: NavController) {
                 label = stringResource(R.string.login_btn),
                 background = white_normal,
                 textColor = black_normal,
-            ) { }
+            ) {
+                viewModel.signIn(
+                    username = email,
+                    password = password,
+                )
+            }
             CustomDivider()
             CustomButton(
                 modifier = Modifier.fillMaxWidth(),

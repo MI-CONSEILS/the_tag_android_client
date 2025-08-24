@@ -1,5 +1,7 @@
 package com.mokhtarihadjmohamed.thetag.ui.screens
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,16 +12,28 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.mokhtarihadjmohamed.tagwatchproject.Viewmodels.AuthViewModel
+import com.mokhtarihadjmohamed.tagwatchproject.Viewmodels.SettingsViewModel
 import com.mokhtarihadjmohamed.thetag.ui.components.TopBar
 import com.mokhtarihadjmohamed.thetag.ui.theme.black_normal
 import com.mokhtarihadjmohamed.thetag.R
+import com.mokhtarihadjmohamed.thetag.data.datastore.SettingsDataStore
+import com.mokhtarihadjmohamed.thetag.data.remote.RetrofitInstance
+import com.mokhtarihadjmohamed.thetag.data.remote.entities.AuthResult
+import com.mokhtarihadjmohamed.thetag.data.repository.AuthRepository
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomButton
 import com.mokhtarihadjmohamed.thetag.ui.components.CustomTextField
 import com.mokhtarihadjmohamed.thetag.ui.components.IconPosition
@@ -30,6 +44,39 @@ import kotlinx.coroutines.flow.flow
 
 @Composable
 fun AccountSetting(navController: NavController) {
+    val context = LocalContext.current
+    val dataStore = SettingsDataStore(context)
+
+    val repository = AuthRepository(
+        api = RetrofitInstance.apiService,
+        dataStore = dataStore,
+    )
+
+    val viewModel: AuthViewModel = viewModel(
+        factory = AuthViewModel.Factory(repository)
+    )
+    val authResult by viewModel.authResults.collectAsState(initial = null)
+
+    LaunchedEffect(authResult) {
+        when (authResult) {
+            is AuthResult.Authorized -> {
+                navController.navigate("OnBoarding") {
+                    popUpTo(navController.graph.startDestinationId) { inclusive = true }
+                }
+            }
+
+            is AuthResult.Unauthorized -> {
+                Toast.makeText(context, "You're not authorized", Toast.LENGTH_LONG).show()
+            }
+
+            is AuthResult.UnknownError -> {
+                Toast.makeText(context, "An unknown error occurred", Toast.LENGTH_LONG).show()
+            }
+
+            else -> Unit
+        }
+    }
+
     Scaffold(
         containerColor = black_normal,
         topBar = {
@@ -167,10 +214,7 @@ fun AccountSetting(navController: NavController) {
                 borderColor = grey_normal,
                 borderRadios = 12,
             ) {
-                navController.navigate("LogInScreen") {
-                    popUpTo("AccountSetting") { inclusive = true }
-                    launchSingleTop = true
-                }
+                viewModel.logout()
             }
         }
     }
