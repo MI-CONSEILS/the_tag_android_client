@@ -171,7 +171,7 @@ fun ProductScreen(navController: NavController) {
                 painter = painterResource(R.drawable.product_image),
                 contentDescription = "product image"
             )
-            MenuItem(type = product.type)
+            MenuItem(type = product.type){}
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = "Menus",
@@ -233,7 +233,7 @@ fun ProductScreen(navController: NavController) {
                     ),
                     type = "Obligatoire",
                     icon = R.drawable.double_check
-                )
+                ){}
             }
             Column(
                 verticalArrangement = Arrangement.spacedBy(8.dp)

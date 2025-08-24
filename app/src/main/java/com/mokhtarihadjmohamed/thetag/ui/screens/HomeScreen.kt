@@ -347,7 +347,7 @@ fun HomeScreen(
                         horizontalArrangement = Arrangement.spacedBy(4.dp)
                     ) {
                         items(menusList) { item ->
-                            MenuItem(type = item)
+                            MenuItem(type = item){}
                         }
                     }
                 }

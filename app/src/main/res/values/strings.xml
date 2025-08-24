@@ -75,5 +75,8 @@
     <string name="restaurantPlusInformation_title">Plus d’information</string>
     <string name="restaurantPlusInformation_btn_01">Voir les horaires d\'ouverture</string>
     <string name="restaurantPlusInformation_btn_02">Quitter le restaurant</string>
+    <string name="restaurantFavorite_title">Mes Favoris</string>
+    <string name="restaurantFavorite_sub_title">Filter</string>
+    <string name="restaurantMenu_title">Menu</string>
 
 </resources>

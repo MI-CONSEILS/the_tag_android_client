@@ -71,8 +71,6 @@ import com.mokhtarihadjmohamed.thetag.ui.components.CustomVideoPlayer
 fun OnBoarding(navController: NavController) {
     val pagerState = rememberPagerState(pageCount = { 4 })
     val coroutineScope = rememberCoroutineScope()
-    val context = LocalContext.current
-    var videoRes by remember { mutableStateOf(0) }
 
     Scaffold { innerPadding ->
         Box(

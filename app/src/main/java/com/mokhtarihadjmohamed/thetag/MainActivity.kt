@@ -28,7 +28,10 @@ import com.mokhtarihadjmohamed.thetag.ui.screens.PhoneNumberScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.ProductScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.RegisterScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.RestaurantChatScreen
+import com.mokhtarihadjmohamed.thetag.ui.screens.RestaurantFavorite
 import com.mokhtarihadjmohamed.thetag.ui.screens.RestaurantHomeScreen
+import com.mokhtarihadjmohamed.thetag.ui.screens.RestaurantMenu
+import com.mokhtarihadjmohamed.thetag.ui.screens.RestaurantPlateScreen
 import com.mokhtarihadjmohamed.thetag.ui.screens.RestaurantPlusInformation
 import com.mokhtarihadjmohamed.thetag.ui.screens.SearchEstablishmentScreen
 import com.mokhtarihadjmohamed.thetag.ui.theme.white_normal
@@ -61,14 +64,17 @@ fun NavigationComposable() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "LogInScreen",
+            startDestination = "OnBoarding",
             modifier = Modifier.padding(innerPadding)
         ) {
+            // TODO Auth
             composable("OnBoarding") { OnBoarding(navController) }
             composable("LogInScreen") { LogInScreen(navController) }
             composable("RegisterScreen") { RegisterScreen(navController) }
             composable("PhoneNumberScreen") { PhoneNumberScreen(navController) }
             composable("OtpScreen") { OtpScreen(navController) }
+
+            // TODO FastFood Screen
             composable("OrderType") { OrderType(navController) }
             composable("HomeScreen") { HomeScreen(navController) }
             composable("OrderScreen") { OrderScreen(navController) }
@@ -76,14 +82,21 @@ fun NavigationComposable() {
             composable("BasketScreen") { BasketScreen(navController) }
             composable("AdditionProductScreen") { AdditionProductScreen(navController) }
             composable("PaymentScreen") { PaymentScreen(navController) }
+
+            // TODO NFC Screen
             composable("NfcScreen") { NfcScreen(navController) }
             composable("SearchEstablishmentScreen") { SearchEstablishmentScreen(navController) }
             composable("MapScreen") { MapScreen(navController) }
             composable("AccountSetting") { AccountSetting(navController) }
             composable("AccountEditInfo") { AccountEditInfo(navController) }
+
+            // TODO Restaurant Screen
             composable("RestaurantHomeScreen") { RestaurantHomeScreen(navController) }
             composable("RestaurantChatScreen") { RestaurantChatScreen(navController) }
             composable("RestaurantPlusInformation") { RestaurantPlusInformation(navController) }
+            composable("RestaurantFavorite") { RestaurantFavorite(navController) }
+            composable("RestaurantMenu") { RestaurantMenu(navController) }
+            composable("RestaurantPlateScreen") { RestaurantPlateScreen(navController) }
         }
     }
 }
